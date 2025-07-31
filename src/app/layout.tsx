@@ -4,10 +4,10 @@ import "./globals.css";
 
 import { AppSidebar } from "@/components/app-sidebar";
 import { SearchBar } from "@/components/search-bar";
+import { SidebarToggle } from "@/components/sidebar-toggle";
 import {
   SidebarInset,
   SidebarProvider,
-  SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { Separator } from "@/components/ui/separator";
 import {
@@ -47,9 +47,9 @@ export default function RootLayout({
         <SidebarProvider>
           <AppSidebar />
           <SidebarInset>
-            <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
-              <div className="flex items-center gap-2 px-4">
-                <SidebarTrigger className="-ml-1 bg-sidebar-accent hover:bg-sidebar-accent/80 border border-sidebar-border" />
+            <header className="flex h-16 shrink-0 items-center gap-2 px-4 border-b border-sidebar-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+              <div className="flex items-center gap-2">
+                <SidebarToggle />
                 <Separator orientation="vertical" className="mr-2 h-4" />
                 <Breadcrumb>
                   <BreadcrumbList>
@@ -65,9 +65,10 @@ export default function RootLayout({
                   </BreadcrumbList>
                 </Breadcrumb>
               </div>
-              <div className="flex items-center gap-2 px-4 ml-auto">
+              <div className="flex-1 flex justify-center px-4 max-w-md mx-auto">
                 <SearchBar />
               </div>
+              <div className="w-[200px]"></div>
             </header>
 {children}
           </SidebarInset>
