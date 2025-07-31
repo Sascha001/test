@@ -176,3 +176,41 @@ body {
   overflow-wrap: break-word;
   word-wrap: break-word;
 }
+
+/* Sidebar hover effects with contrasting colors */
+[data-sidebar="menu-button"]:hover {
+  background-color: hsl(var(--sidebar-accent)) !important;
+  color: hsl(var(--sidebar-accent-foreground)) !important;
+  transition: all 0.2s ease-in-out !important;
+}
+
+/* Active state for current page - purple highlight */
+[data-sidebar="menu-button"][data-active="true"] {
+  background-color: #7033ff !important;
+  color: white !important;
+}
+
+/* Sub-menu items hover effects */
+[data-sidebar="menu-sub-button"]:hover {
+  background-color: hsl(var(--sidebar-accent)) !important;
+  color: hsl(var(--sidebar-accent-foreground)) !important;
+  transition: all 0.2s ease-in-out !important;
+}
+
+/* Sub-menu active state */
+[data-sidebar="menu-sub-button"][data-active="true"] {
+  background-color: #7033ff !important;
+  color: white !important;
+}
+
+/* Enhanced hover state for better contrast */
+[data-sidebar="sidebar"] [data-sidebar="menu-button"]:hover {
+  background-color: hsl(252 100% 88%) !important;
+  color: hsl(252 100% 20%) !important;
+}
+
+/* Ensure proper contrast for hover states */
+[data-sidebar="sidebar"] [data-sidebar="menu-sub-button"]:hover {
+  background-color: hsl(252 100% 88%) !important;
+  color: hsl(252 100% 20%) !important;
+}
