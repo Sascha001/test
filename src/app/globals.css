@@ -129,11 +129,6 @@ body {
   z-index: 50;
 }
 
-/* Fix transparent stripe in collapsed mode */
-[data-sidebar="sidebar"][data-state="collapsed"] {
-  border-right: none !important;
-}
-
 /* Better visible trigger button */
 [data-sidebar="trigger"] {
   opacity: 1 !important;
