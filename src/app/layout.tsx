@@ -46,9 +46,9 @@ export default function RootLayout({
         <SidebarProvider>
           <AppSidebar />
           <SidebarInset>
-            <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
-              <div className="flex items-center gap-2 px-4">
-                <SidebarTrigger className="-ml-1" />
+            <header className="flex h-16 shrink-0 items-center gap-2 px-4 border-b border-sidebar-border bg-background">
+              <SidebarTrigger className="mr-2" />
+              <div className="flex items-center gap-2">
                 <Breadcrumb>
                   <BreadcrumbList>
                     <BreadcrumbItem className="hidden md:block">
@@ -63,11 +63,11 @@ export default function RootLayout({
                   </BreadcrumbList>
                 </Breadcrumb>
               </div>
-              <div className="flex-1 flex justify-center px-4 max-w-md mx-auto">
+              <div className="flex-1 flex justify-center px-4 max-w-md">
                 <SearchBar />
               </div>
             </header>
-            <div className="dashboard-content gap-4 p-4 pt-0">
+            <div className="dashboard-content">
               {children}
             </div>
           </SidebarInset>
