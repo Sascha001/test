@@ -207,10 +207,77 @@ body {
 [data-sidebar="sidebar"] [data-sidebar="menu-button"]:hover {
   background-color: hsl(252 100% 88%) !important;
   color: hsl(252 100% 20%) !important;
+  border-radius: 6px !important;
 }
 
 /* Ensure proper contrast for hover states */
 [data-sidebar="sidebar"] [data-sidebar="menu-sub-button"]:hover {
   background-color: hsl(252 100% 88%) !important;
   color: hsl(252 100% 20%) !important;
+  border-radius: 6px !important;
+}
+
+/* Fix transparent sidebar - ensure solid background */
+[data-sidebar="sidebar"] {
+  background-color: hsl(var(--sidebar-background)) !important;
+  backdrop-filter: none !important;
+  border-right: 1px solid hsl(var(--sidebar-border)) !important;
+}
+
+/* Fix transparent collapse button/trigger */
+[data-sidebar="trigger"] {
+  background-color: hsl(var(--background)) !important;
+  border: 1px solid hsl(var(--border)) !important;
+  opacity: 1 !important;
+  backdrop-filter: none !important;
+}
+
+/* Improved tooltips - Google AI Studio style for shadcn/ui */
+/* Style the native shadcn/ui tooltips */
+[role="tooltip"] {
+  background-color: hsl(var(--popover)) !important;
+  color: hsl(var(--popover-foreground)) !important;
+  border: 1px solid hsl(var(--border)) !important;
+  border-radius: 8px !important;
+  padding: 8px 12px !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  animation: tooltipFadeIn 0.2s ease-out !important;
+}
+
+/* Tooltip arrow styling */
+[role="tooltip"] > svg {
+  fill: hsl(var(--popover)) !important;
+  stroke: hsl(var(--border)) !important;
+}
+
+@keyframes tooltipFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateX(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateX(0);
+  }
+}
+
+/* Override default tooltip styling for better appearance */
+[data-radix-popper-content-wrapper] {
+  z-index: 1000 !important;
+}
+
+/* Tooltip content improvements */
+[data-radix-tooltip-content] {
+  background-color: hsl(var(--popover)) !important;
+  color: hsl(var(--popover-foreground)) !important;
+  border: 1px solid hsl(var(--border)) !important;
+  border-radius: 8px !important;
+  padding: 8px 12px !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  max-width: 200px !important;
+  word-wrap: break-word !important;
 }
