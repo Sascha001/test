@@ -122,38 +122,6 @@ body {
   font-family: var(--font-sans), system-ui, sans-serif;
 }
 
-/* Ensure sidebar is opaque and content doesn't bleed through */
-[data-sidebar="sidebar"] {
-  background: hsl(var(--sidebar-background)) !important;
-  border-right: 1px solid hsl(var(--sidebar-border)) !important;
-  z-index: 50;
-}
-
-/* Better visible trigger button */
-[data-sidebar="trigger"] {
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-
-/* Enhanced hover effects for sidebar menu buttons */
-[data-sidebar="sidebar"] [data-sidebar="menu-button"]:hover {
-  background-color: hsl(var(--sidebar-accent)) !important;
-  color: hsl(var(--sidebar-accent-foreground)) !important;
-  transition: all 0.2s ease-in-out !important;
-}
-
-/* Active state for sidebar menu buttons */
-[data-sidebar="sidebar"] [data-sidebar="menu-button"][data-active="true"] {
-  background-color: hsl(var(--sidebar-primary)) !important;
-  color: hsl(var(--sidebar-primary-foreground)) !important;
-}
-
-/* Ensure proper content spacing and prevent overlap */
-[data-sidebar="inset"] {
-  margin-left: 0 !important;
-  transition: margin-left 0.2s ease-in-out;
-}
-
 /* Dashboard content container spacing */
 .dashboard-content {
   max-width: 100%;

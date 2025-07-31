@@ -1,20 +1,15 @@
 "use client"
 
+import * as React from "react"
 import {
-  ChevronDown,
+  ChevronRight,
   BarChart3,
   Briefcase,
-  Activity,
   Shield,
   Settings,
   User,
   Home,
   TrendingUp,
-  AlertTriangle,
-  Target,
-  Brain,
-  Database,
-  Users
 } from "lucide-react"
 
 import {
@@ -28,6 +23,9 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarMenuSub,
+  SidebarMenuSubButton,
+  SidebarMenuSubItem,
   SidebarRail,
 } from "@/components/ui/sidebar"
 import {
@@ -35,8 +33,6 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible"
-import { SidebarToggleButton } from "./sidebar-toggle-button"
-import { SidebarMenuItemWithTooltip } from "./sidebar-menu-item-with-tooltip"
 import { usePathname } from "next/navigation"
 import Link from "next/link"
 
@@ -55,17 +51,14 @@ const data = {
         {
           title: "Portfolio Übersicht",
           url: "/depot/overview",
-          icon: TrendingUp,
         },
         {
           title: "Positionen",
           url: "/depot/positions",
-          icon: Target,
         },
         {
           title: "Performance",
           url: "/depot/performance",
-          icon: Activity,
         },
       ],
     },
@@ -77,12 +70,10 @@ const data = {
         {
           title: "Trading Statistiken",
           url: "/stats/trading",
-          icon: BarChart3,
         },
         {
           title: "Unsicherheits-Analyse",
           url: "/stats/uncertainty",
-          icon: AlertTriangle,
         },
       ],
     },
@@ -94,17 +85,14 @@ const data = {
         {
           title: "KI-Modell Vertrauen",
           url: "/verification/model",
-          icon: Brain,
         },
         {
           title: "Datenqualität",
           url: "/verification/data",
-          icon: Database,
         },
         {
           title: "Menschliche Expertise",
           url: "/verification/human",
-          icon: Users,
         },
       ],
     },
@@ -116,37 +104,24 @@ const data = {
   ],
 }
 
-export function AppSidebar() {
+export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const pathname = usePathname()
 
-  // Function to check if a menu item is active
-  const isMenuItemActive = (url: string, items?: { url: string }[]) => {
-    if (pathname === url) return true
-    if (items) {
-      return items.some(item => pathname === item.url)
-    }
-    return false
-  }
-
-  // Function to check if a submenu item is active
-  const isSubMenuItemActive = (url: string) => {
-    return pathname === url
-  }
-
   return (
-    <Sidebar collapsible="icon" className="relative">
-      <SidebarToggleButton />
-      <SidebarHeader className="border-b border-sidebar-border">
+    <Sidebar collapsible="icon" {...props}>
+      <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton size="lg">
-              <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                <TrendingUp className="size-4" />
-              </div>
-              <div className="grid flex-1 text-left text-sm leading-tight group-data-[collapsible=icon]:hidden">
-                <span className="truncate font-semibold">AI Trading Hub</span>
-                <span className="truncate text-xs">Uncertainty Analysis</span>
-              </div>
+            <SidebarMenuButton size="lg" asChild>
+              <Link href="/">
+                <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+                  <TrendingUp className="size-4" />
+                </div>
+                <div className="grid flex-1 text-left text-sm leading-tight">
+                  <span className="truncate font-semibold">AI Trading Hub</span>
+                  <span className="truncate text-xs">Uncertainty Analysis</span>
+                </div>
+              </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
@@ -154,12 +129,11 @@ export function AppSidebar() {
       
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel className="group-data-[collapsible=icon]:hidden">Navigation</SidebarGroupLabel>
+          <SidebarGroupLabel>Navigation</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {data.navMain.map((item) => {
-                const isActive = isMenuItemActive(item.url, item.items)
-                const hasSubItems = item.items && item.items.length > 0
+                const isActive = pathname === item.url || (item.items && item.items.some(subItem => pathname === subItem.url))
                 
                 return (
                   <Collapsible
@@ -168,50 +142,46 @@ export function AppSidebar() {
                     defaultOpen={isActive}
                     className="group/collapsible"
                   >
-                    {hasSubItems ? (
-                      <SidebarMenuItemWithTooltip 
-                        tooltip={item.title}
-                        isActive={isActive}
-                      >
-                        <CollapsibleTrigger asChild>
-                          <SidebarMenuButton isActive={isActive}>
+                    <SidebarMenuItem>
+                      {item.items ? (
+                        <>
+                          <CollapsibleTrigger asChild>
+                            <SidebarMenuButton 
+                              tooltip={item.title}
+                              isActive={isActive}
+                            >
+                              {item.icon && <item.icon />}
+                              <span>{item.title}</span>
+                              <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                            </SidebarMenuButton>
+                          </CollapsibleTrigger>
+                          <CollapsibleContent>
+                            <SidebarMenuSub>
+                              {item.items.map((subItem) => (
+                                <SidebarMenuSubItem key={subItem.title}>
+                                  <SidebarMenuSubButton asChild isActive={pathname === subItem.url}>
+                                    <Link href={subItem.url}>
+                                      <span>{subItem.title}</span>
+                                    </Link>
+                                  </SidebarMenuSubButton>
+                                </SidebarMenuSubItem>
+                              ))}
+                            </SidebarMenuSub>
+                          </CollapsibleContent>
+                        </>
+                      ) : (
+                        <SidebarMenuButton 
+                          asChild 
+                          tooltip={item.title}
+                          isActive={pathname === item.url}
+                        >
+                          <Link href={item.url}>
                             {item.icon && <item.icon />}
                             <span>{item.title}</span>
-                            <ChevronDown className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-180" />
-                          </SidebarMenuButton>
-                        </CollapsibleTrigger>
-                        <CollapsibleContent>
-                          <SidebarMenu>
-                            {item.items.map((subItem) => (
-                              <SidebarMenuItem key={subItem.title}>
-                                <SidebarMenuButton 
-                                  asChild 
-                                  isActive={isSubMenuItemActive(subItem.url)}
-                                  className="pl-8"
-                                >
-                                  <Link href={subItem.url}>
-                                    {subItem.icon && <subItem.icon className="size-4" />}
-                                    <span>{subItem.title}</span>
-                                  </Link>
-                                </SidebarMenuButton>
-                              </SidebarMenuItem>
-                            ))}
-                          </SidebarMenu>
-                        </CollapsibleContent>
-                      </SidebarMenuItemWithTooltip>
-                    ) : (
-                      <SidebarMenuItemWithTooltip 
-                        tooltip={item.title}
-                        isActive={isActive}
-                        asChild
-                        href={item.url}
-                      >
-                        <Link href={item.url}>
-                          {item.icon && <item.icon />}
-                          <span>{item.title}</span>
-                        </Link>
-                      </SidebarMenuItemWithTooltip>
-                    )}
+                          </Link>
+                        </SidebarMenuButton>
+                      )}
+                    </SidebarMenuItem>
                   </Collapsible>
                 )
               })}
@@ -222,17 +192,15 @@ export function AppSidebar() {
       
       <SidebarFooter>
         <SidebarMenu>
-          <SidebarMenuItemWithTooltip tooltip="Profil">
-            <SidebarMenuButton size="lg">
-              <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-accent text-sidebar-accent-foreground">
-                <User className="size-4" />
-              </div>
-              <div className="grid flex-1 text-left text-sm leading-tight group-data-[collapsible=icon]:hidden">
+          <SidebarMenuItem>
+            <SidebarMenuButton tooltip="Profil" size="lg">
+              <User className="size-4" />
+              <div className="grid flex-1 text-left text-sm leading-tight">
                 <span className="truncate font-semibold">Max Mustermann</span>
                 <span className="truncate text-xs">Trader</span>
               </div>
             </SidebarMenuButton>
-          </SidebarMenuItemWithTooltip>
+          </SidebarMenuItem>
         </SidebarMenu>
       </SidebarFooter>
       
