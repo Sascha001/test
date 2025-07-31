@@ -36,6 +36,7 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible"
 import { SidebarToggleButton } from "./sidebar-toggle-button"
+import { SidebarMenuItemWithTooltip } from "./sidebar-menu-item-with-tooltip"
 
 const data = {
   navMain: [
@@ -146,11 +147,13 @@ export function AppSidebar() {
                   defaultOpen={item.isActive}
                   className="group/collapsible"
                 >
-                  <SidebarMenuItem>
-                    {item.items ? (
+                  {item.items ? (
+                    <SidebarMenuItemWithTooltip 
+                      tooltip={item.title}
+                      isActive={item.isActive}
+                    >
                       <CollapsibleTrigger asChild>
                         <SidebarMenuButton
-                          tooltip={item.title}
                           isActive={item.isActive}
                         >
                           {item.icon && <item.icon />}
@@ -158,31 +161,34 @@ export function AppSidebar() {
                           <ChevronDown className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-180" />
                         </SidebarMenuButton>
                       </CollapsibleTrigger>
-                    ) : (
-                      <SidebarMenuButton asChild tooltip={item.title} isActive={item.isActive}>
-                        <a href={item.url}>
-                          {item.icon && <item.icon />}
-                          <span>{item.title}</span>
-                        </a>
-                      </SidebarMenuButton>
-                    )}
-                    {item.items && (
-                      <CollapsibleContent>
-                        <SidebarMenu>
-                          {item.items.map((subItem) => (
-                            <SidebarMenuItem key={subItem.title}>
-                              <SidebarMenuButton asChild>
-                                <a href={subItem.url} className="pl-8">
-                                  {subItem.icon && <subItem.icon className="size-4" />}
-                                  <span>{subItem.title}</span>
-                                </a>
-                              </SidebarMenuButton>
-                            </SidebarMenuItem>
-                          ))}
-                        </SidebarMenu>
-                      </CollapsibleContent>
-                    )}
-                  </SidebarMenuItem>
+                      {item.items && (
+                        <CollapsibleContent>
+                          <SidebarMenu>
+                            {item.items.map((subItem) => (
+                              <SidebarMenuItem key={subItem.title}>
+                                <SidebarMenuButton asChild>
+                                  <a href={subItem.url} className="pl-8">
+                                    {subItem.icon && <subItem.icon className="size-4" />}
+                                    <span>{subItem.title}</span>
+                                  </a>
+                                </SidebarMenuButton>
+                              </SidebarMenuItem>
+                            ))}
+                          </SidebarMenu>
+                        </CollapsibleContent>
+                      )}
+                    </SidebarMenuItemWithTooltip>
+                  ) : (
+                    <SidebarMenuItemWithTooltip 
+                      tooltip={item.title}
+                      isActive={item.isActive}
+                      asChild
+                      href={item.url}
+                    >
+                      {item.icon && <item.icon />}
+                      <span>{item.title}</span>
+                    </SidebarMenuItemWithTooltip>
+                  )}
                 </Collapsible>
               ))}
             </SidebarMenu>
@@ -192,7 +198,7 @@ export function AppSidebar() {
       
       <SidebarFooter>
         <SidebarMenu>
-          <SidebarMenuItem>
+          <SidebarMenuItemWithTooltip tooltip="Profil">
             <SidebarMenuButton size="lg">
               <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-accent text-sidebar-accent-foreground">
                 <User className="size-4" />
@@ -202,7 +208,7 @@ export function AppSidebar() {
                 <span className="truncate text-xs">Trader</span>
               </div>
             </SidebarMenuButton>
-          </SidebarMenuItem>
+          </SidebarMenuItemWithTooltip>
         </SidebarMenu>
       </SidebarFooter>
       
