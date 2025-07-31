@@ -43,35 +43,41 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <SidebarProvider>
-          <AppSidebar />
-          <SidebarInset>
-            <header className="flex h-16 shrink-0 items-center gap-2 px-4 border-b border-sidebar-border bg-background">
-              <SidebarTrigger className="mr-2" />
-              <div className="flex items-center gap-2">
-                <Breadcrumb>
-                  <BreadcrumbList>
-                    <BreadcrumbItem className="hidden md:block">
-                      <BreadcrumbLink href="/">
-                        Trading Hub
-                      </BreadcrumbLink>
-                    </BreadcrumbItem>
-                    <BreadcrumbSeparator className="hidden md:block" />
-                    <BreadcrumbItem>
-                      <BreadcrumbPage>Dashboard</BreadcrumbPage>
-                    </BreadcrumbItem>
-                  </BreadcrumbList>
-                </Breadcrumb>
-              </div>
-              <div className="flex-1 flex justify-center px-4 max-w-md">
-                <SearchBar />
-              </div>
-            </header>
-            <div className="dashboard-content">
-              {children}
+        <div className="app-container">
+          <SidebarProvider>
+            <div className="sidebar-block">
+              <AppSidebar />
             </div>
-          </SidebarInset>
-        </SidebarProvider>
+            <div className="main-content-block">
+              <SidebarInset>
+                <header className="content-header">
+                  <SidebarTrigger className="mr-2" />
+                  <div className="flex items-center gap-2">
+                    <Breadcrumb>
+                      <BreadcrumbList>
+                        <BreadcrumbItem className="hidden md:block">
+                          <BreadcrumbLink href="/">
+                            Trading Hub
+                          </BreadcrumbLink>
+                        </BreadcrumbItem>
+                        <BreadcrumbSeparator className="hidden md:block" />
+                        <BreadcrumbItem>
+                          <BreadcrumbPage>Dashboard</BreadcrumbPage>
+                        </BreadcrumbItem>
+                      </BreadcrumbList>
+                    </Breadcrumb>
+                  </div>
+                  <div className="flex-1 flex justify-center px-4 max-w-md">
+                    <SearchBar />
+                  </div>
+                </header>
+                <div className="dashboard-content-modular">
+                  {children}
+                </div>
+              </SidebarInset>
+            </div>
+          </SidebarProvider>
+        </div>
       </body>
     </html>
   );
