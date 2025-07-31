@@ -1,26 +1,123 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
+  --primary: 262.1 83.3% 57.8%;
+  --primary-foreground: 210 20% 98%;
+  --secondary: 210 40% 96%;
+  --secondary-foreground: 222.2 84% 4.9%;
+  --muted: 210 40% 96%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --accent: 210 40% 96%;
+  --accent-foreground: 222.2 84% 4.9%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 20% 98%;
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 262.1 83.3% 57.8%;
+  --chart-1: 12 76% 61%;
+  --chart-2: 173 58% 39%;
+  --chart-3: 197 37% 24%;
+  --chart-4: 43 74% 66%;
+  --chart-5: 27 87% 67%;
+  --radius: 0.5rem;
+  
+  /* Sidebar colors */
+  --sidebar-background: 0 0% 98%;
+  --sidebar-foreground: 240 5.3% 26.1%;
+  --sidebar-primary: 262.1 83.3% 57.8%;
+  --sidebar-primary-foreground: 0 0% 98%;
+  --sidebar-accent: 220 14.3% 95.9%;
+  --sidebar-accent-foreground: 220 8.9% 46.1%;
+  --sidebar-border: 220 13% 91%;
+  --sidebar-ring: 262.1 83.3% 57.8%;
+}
+
+.dark {
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 20% 98%;
+  --card: 222.2 84% 4.9%;
+  --card-foreground: 210 20% 98%;
+  --popover: 222.2 84% 4.9%;
+  --popover-foreground: 210 20% 98%;
+  --primary: 263.4 70% 50.4%;
+  --primary-foreground: 210 20% 98%;
+  --secondary: 217.2 32.6% 17.5%;
+  --secondary-foreground: 210 20% 98%;
+  --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+  --accent: 217.2 32.6% 17.5%;
+  --accent-foreground: 210 20% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 20% 98%;
+  --border: 217.2 32.6% 17.5%;
+  --input: 217.2 32.6% 17.5%;
+  --ring: 263.4 70% 50.4%;
+  --chart-1: 220 70% 50%;
+  --chart-2: 160 60% 45%;
+  --chart-3: 30 80% 55%;
+  --chart-4: 280 65% 60%;
+  --chart-5: 340 75% 55%;
+  
+  /* Sidebar colors for dark mode */
+  --sidebar-background: 222.2 84% 4.9%;
+  --sidebar-foreground: 210 20% 98%;
+  --sidebar-primary: 263.4 70% 50.4%;
+  --sidebar-primary-foreground: 210 20% 98%;
+  --sidebar-accent: 217.2 32.6% 17.5%;
+  --sidebar-accent-foreground: 210 20% 98%;
+  --sidebar-border: 217.2 32.6% 17.5%;
+  --sidebar-ring: 263.4 70% 50.4%;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: oklch(from hsl(var(--background)) l c h);
+  --color-foreground: oklch(from hsl(var(--foreground)) l c h);
+  --color-card: oklch(from hsl(var(--card)) l c h);
+  --color-card-foreground: oklch(from hsl(var(--card-foreground)) l c h);
+  --color-popover: oklch(from hsl(var(--popover)) l c h);
+  --color-popover-foreground: oklch(from hsl(var(--popover-foreground)) l c h);
+  --color-primary: oklch(from hsl(var(--primary)) l c h);
+  --color-primary-foreground: oklch(from hsl(var(--primary-foreground)) l c h);
+  --color-secondary: oklch(from hsl(var(--secondary)) l c h);
+  --color-secondary-foreground: oklch(from hsl(var(--secondary-foreground)) l c h);
+  --color-muted: oklch(from hsl(var(--muted)) l c h);
+  --color-muted-foreground: oklch(from hsl(var(--muted-foreground)) l c h);
+  --color-accent: oklch(from hsl(var(--accent)) l c h);
+  --color-accent-foreground: oklch(from hsl(var(--accent-foreground)) l c h);
+  --color-destructive: oklch(from hsl(var(--destructive)) l c h);
+  --color-destructive-foreground: oklch(from hsl(var(--destructive-foreground)) l c h);
+  --color-border: oklch(from hsl(var(--border)) l c h);
+  --color-input: oklch(from hsl(var(--input)) l c h);
+  --color-ring: oklch(from hsl(var(--ring)) l c h);
+  --color-chart-1: oklch(from hsl(var(--chart-1)) l c h);
+  --color-chart-2: oklch(from hsl(var(--chart-2)) l c h);
+  --color-chart-3: oklch(from hsl(var(--chart-3)) l c h);
+  --color-chart-4: oklch(from hsl(var(--chart-4)) l c h);
+  --color-chart-5: oklch(from hsl(var(--chart-5)) l c h);
+  --radius: var(--radius);
+  
+  /* Sidebar theme colors */
+  --color-sidebar-background: oklch(from hsl(var(--sidebar-background)) l c h);
+  --color-sidebar-foreground: oklch(from hsl(var(--sidebar-foreground)) l c h);
+  --color-sidebar-primary: oklch(from hsl(var(--sidebar-primary)) l c h);
+  --color-sidebar-primary-foreground: oklch(from hsl(var(--sidebar-primary-foreground)) l c h);
+  --color-sidebar-accent: oklch(from hsl(var(--sidebar-accent)) l c h);
+  --color-sidebar-accent-foreground: oklch(from hsl(var(--sidebar-accent-foreground)) l c h);
+  --color-sidebar-border: oklch(from hsl(var(--sidebar-border)) l c h);
+  --color-sidebar-ring: oklch(from hsl(var(--sidebar-ring)) l c h);
+  
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: var(--font-sans), system-ui, sans-serif;
 }

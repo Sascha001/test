@@ -1,172 +1,299 @@
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { BarChart3, Users, DollarSign, Activity, TrendingUp, Settings } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { 
+  TrendingUp, 
+  Brain, 
+  Database, 
+  Users, 
+  AlertTriangle,
+  CheckCircle,
+  XCircle,
+  DollarSign,
+  Briefcase,
+  Eye
+} from "lucide-react";
 
-export default function Dashboard() {
+export default function TradingDashboard() {
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      {/* Header */}
-      <header className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Dashboard</h1>
-            </div>
-            <div className="flex items-center space-x-4">
-              <Button variant="outline" size="sm">
-                <Settings className="w-4 h-4 mr-2" />
-                Settings
-              </Button>
-              <Button size="sm">New Project</Button>
-            </div>
-          </div>
-        </div>
-      </header>
+    <>
+      {/* Welcome Section */}
+      <div className="rounded-xl bg-muted/50 p-4">
+        <h1 className="text-2xl font-bold">AI Trading Dashboard</h1>
+        <p className="text-muted-foreground">
+          Überwachen Sie KI-Empfehlungen und deren Unsicherheiten in Echtzeit
+        </p>
+      </div>
 
-      {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Total Revenue</CardTitle>
-              <DollarSign className="h-4 w-4 text-muted-foreground" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">$45,231.89</div>
-              <p className="text-xs text-muted-foreground">
-                +20.1% from last month
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Subscriptions</CardTitle>
-              <Users className="h-4 w-4 text-muted-foreground" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">+2350</div>
-              <p className="text-xs text-muted-foreground">
-                +180.1% from last month
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Sales</CardTitle>
-              <BarChart3 className="h-4 w-4 text-muted-foreground" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">+12,234</div>
-              <p className="text-xs text-muted-foreground">
-                +19% from last month
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Active Now</CardTitle>
-              <Activity className="h-4 w-4 text-muted-foreground" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">+573</div>
-              <p className="text-xs text-muted-foreground">
-                +201 since last hour
-              </p>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Charts Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-          <Card>
-            <CardHeader>
-              <CardTitle>Analytics Overview</CardTitle>
-              <CardDescription>
-                Your performance metrics for the last 6 months
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="h-[300px] flex items-center justify-center text-muted-foreground">
-                <div className="text-center">
-                  <BarChart3 className="h-12 w-12 mx-auto mb-4 opacity-50" />
-                  <p>Chart placeholder - Analytics data would be displayed here</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader>
-              <CardTitle>Recent Activity</CardTitle>
-              <CardDescription>
-                Latest activities and updates from your projects
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                <div className="flex items-center space-x-4">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                  <div className="flex-1">
-                    <p className="text-sm font-medium">New user registered</p>
-                    <p className="text-xs text-muted-foreground">2 minutes ago</p>
-                  </div>
-                </div>
-                <div className="flex items-center space-x-4">
-                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                  <div className="flex-1">
-                    <p className="text-sm font-medium">Payment received</p>
-                    <p className="text-xs text-muted-foreground">5 minutes ago</p>
-                  </div>
-                </div>
-                <div className="flex items-center space-x-4">
-                  <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
-                  <div className="flex-1">
-                    <p className="text-sm font-medium">Server maintenance scheduled</p>
-                    <p className="text-xs text-muted-foreground">1 hour ago</p>
-                  </div>
-                </div>
-                <div className="flex items-center space-x-4">
-                  <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                  <div className="flex-1">
-                    <p className="text-sm font-medium">New feature deployed</p>
-                    <p className="text-xs text-muted-foreground">3 hours ago</p>
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Quick Actions */}
+      {/* Key Metrics */}
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card>
-          <CardHeader>
-            <CardTitle>Quick Actions</CardTitle>
-            <CardDescription>
-              Common tasks and shortcuts to help you get things done faster
-            </CardDescription>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Portfolio Wert</CardTitle>
+            <DollarSign className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <Button variant="outline" className="h-20 flex-col space-y-2">
-                <TrendingUp className="h-6 w-6" />
-                <span>View Reports</span>
-              </Button>
-              <Button variant="outline" className="h-20 flex-col space-y-2">
-                <Users className="h-6 w-6" />
-                <span>Manage Users</span>
-              </Button>
-              <Button variant="outline" className="h-20 flex-col space-y-2">
-                <Settings className="h-6 w-6" />
-                <span>System Settings</span>
-              </Button>
+            <div className="text-2xl font-bold">€127,432.50</div>
+            <div className="flex items-center text-xs text-green-600">
+              <TrendingUp className="mr-1 h-3 w-3" />
+              +2.34% heute
             </div>
           </CardContent>
         </Card>
-      </main>
-    </div>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Aktive Positionen</CardTitle>
+            <Briefcase className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">24</div>
+            <p className="text-xs text-muted-foreground">
+              8 neue Empfehlungen
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">KI Vertrauen</CardTitle>
+            <Brain className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">87%</div>
+            <p className="text-xs text-muted-foreground">
+              Durchschnittliche Konfidenz
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Unsicherheits-Score</CardTitle>
+            <AlertTriangle className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">Medium</div>
+            <p className="text-xs text-yellow-600">
+              3 Risiko-Alerts
+            </p>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Main Content Grid */}
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
+        {/* Trading Empfehlungen */}
+        <Card className="col-span-4">
+          <CardHeader>
+            <CardTitle>Aktuelle KI-Empfehlungen</CardTitle>
+            <CardDescription>
+              Neueste Trading-Signale mit Unsicherheitsanalyse
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              {[
+                {
+                  symbol: "AAPL",
+                  action: "KAUFEN",
+                  confidence: 92,
+                  price: 178.32,
+                  uncertainty: "Niedrig",
+                  uncertaintyColor: "text-green-600",
+                  actionColor: "text-green-600"
+                },
+                {
+                  symbol: "TSLA",
+                  action: "VERKAUFEN",
+                  confidence: 78,
+                  price: 242.68,
+                  uncertainty: "Mittel",
+                  uncertaintyColor: "text-yellow-600",
+                  actionColor: "text-red-600"
+                },
+                {
+                  symbol: "NVDA",
+                  action: "HALTEN",
+                  confidence: 65,
+                  price: 459.12,
+                  uncertainty: "Hoch",
+                  uncertaintyColor: "text-red-600",
+                  actionColor: "text-blue-600"
+                }
+              ].map((rec, i) => (
+                <div key={i} className="flex items-center justify-between border-b pb-3 last:border-b-0">
+                  <div className="flex items-center space-x-4">
+                    <div className="font-medium">{rec.symbol}</div>
+                    <div className={`text-sm font-medium ${rec.actionColor}`}>
+                      {rec.action}
+                    </div>
+                    <div className="text-sm text-muted-foreground">
+                      ${rec.price.toFixed(2)}
+                    </div>
+                  </div>
+                  <div className="flex items-center space-x-4">
+                    <div className="text-right">
+                      <div className="text-sm font-medium">{rec.confidence}% Konfidenz</div>
+                      <div className={`text-xs ${rec.uncertaintyColor}`}>
+                        {rec.uncertainty} Unsicherheit
+                      </div>
+                    </div>
+                    <Button size="sm" variant="outline">
+                      <Eye className="h-4 w-4 mr-1" />
+                      Details
+                    </Button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Unsicherheits-Übersicht */}
+        <Card className="col-span-3">
+          <CardHeader>
+            <CardTitle>Unsicherheits-Quellen</CardTitle>
+            <CardDescription>
+              Analyse der verschiedenen Unsicherheitsfaktoren
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-2">
+                  <Brain className="h-4 w-4 text-blue-500" />
+                  <span className="font-medium">Modell-Unsicherheit</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <div className="w-16 h-2 bg-blue-200 rounded-full">
+                    <div className="w-3/4 h-2 bg-blue-500 rounded-full"></div>
+                  </div>
+                  <span className="text-sm text-muted-foreground">25%</span>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-2">
+                  <Database className="h-4 w-4 text-yellow-500" />
+                  <span className="font-medium">Daten-Unsicherheit</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <div className="w-16 h-2 bg-yellow-200 rounded-full">
+                    <div className="w-2/3 h-2 bg-yellow-500 rounded-full"></div>
+                  </div>
+                  <span className="text-sm text-muted-foreground">35%</span>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-2">
+                  <Users className="h-4 w-4 text-green-500" />
+                  <span className="font-medium">Experten-Einschätzung</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <div className="w-16 h-2 bg-green-200 rounded-full">
+                    <div className="w-1/2 h-2 bg-green-500 rounded-full"></div>
+                  </div>
+                  <span className="text-sm text-muted-foreground">15%</span>
+                </div>
+              </div>
+
+              <div className="pt-4 border-t">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="font-medium">Gesamt-Unsicherheit</span>
+                  <span className="text-sm font-medium text-yellow-600">Mittel</span>
+                </div>
+                <div className="w-full h-3 bg-gray-200 rounded-full">
+                  <div className="w-3/5 h-3 bg-gradient-to-r from-green-500 via-yellow-500 to-red-500 rounded-full"></div>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Risk Management & Recent Activity */}
+      <div className="grid gap-4 md:grid-cols-2">
+        <Card>
+          <CardHeader>
+            <CardTitle>Risiko-Management</CardTitle>
+            <CardDescription>
+              Aktuelle Warnungen und Empfehlungen
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-3">
+              <div className="flex items-center space-x-3 p-3 rounded-lg bg-red-50 dark:bg-red-950/10">
+                <XCircle className="h-5 w-5 text-red-500" />
+                <div className="flex-1">
+                  <p className="text-sm font-medium">Hohe Volatilität erkannt</p>
+                  <p className="text-xs text-muted-foreground">TSLA zeigt ungewöhnliche Kursbewegungen</p>
+                </div>
+              </div>
+              
+              <div className="flex items-center space-x-3 p-3 rounded-lg bg-yellow-50 dark:bg-yellow-950/10">
+                <AlertTriangle className="h-5 w-5 text-yellow-500" />
+                <div className="flex-1">
+                  <p className="text-sm font-medium">Datenqualität-Warnung</p>
+                  <p className="text-xs text-muted-foreground">Verzögerung bei Realtime-Daten für NVDA</p>
+                </div>
+              </div>
+              
+              <div className="flex items-center space-x-3 p-3 rounded-lg bg-green-50 dark:bg-green-950/10">
+                <CheckCircle className="h-5 w-5 text-green-500" />
+                <div className="flex-1">
+                  <p className="text-sm font-medium">Portfolio ausbalanciert</p>
+                  <p className="text-xs text-muted-foreground">Diversifikation innerhalb der Zielwerte</p>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Aktivitäts-Feed</CardTitle>
+            <CardDescription>
+              Letzte Trading-Aktivitäten und KI-Updates
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              <div className="flex items-start space-x-3">
+                <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+                <div className="flex-1">
+                  <p className="text-sm font-medium">AAPL Position eröffnet</p>
+                  <p className="text-xs text-muted-foreground">vor 15 Minuten • Kauforder ausgeführt</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start space-x-3">
+                <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+                <div className="flex-1">
+                  <p className="text-sm font-medium">KI-Modell aktualisiert</p>
+                  <p className="text-xs text-muted-foreground">vor 32 Minuten • Neue Gewichtungen aktiv</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start space-x-3">
+                <div className="w-2 h-2 bg-yellow-500 rounded-full mt-2"></div>
+                <div className="flex-1">
+                  <p className="text-sm font-medium">Markt-Anomalie erkannt</p>
+                  <p className="text-xs text-muted-foreground">vor 1 Stunde • Erhöhte Überwachung aktiv</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start space-x-3">
+                <div className="w-2 h-2 bg-red-500 rounded-full mt-2"></div>
+                <div className="flex-1">
+                  <p className="text-sm font-medium">Stop-Loss ausgelöst</p>
+                  <p className="text-xs text-muted-foreground">vor 2 Stunden • META Position geschlossen</p>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </>
   );
 }
