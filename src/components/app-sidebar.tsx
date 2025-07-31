@@ -145,18 +145,25 @@ export function AppSidebar() {
                   className="group/collapsible"
                 >
                   <SidebarMenuItem>
-                    <CollapsibleTrigger asChild>
-                      <SidebarMenuButton
-                        tooltip={item.title}
-                        isActive={item.isActive}
-                      >
-                        {item.icon && <item.icon />}
-                        <span>{item.title}</span>
-                        {item.items && (
+                    {item.items ? (
+                      <CollapsibleTrigger asChild>
+                        <SidebarMenuButton
+                          tooltip={item.title}
+                          isActive={item.isActive}
+                        >
+                          {item.icon && <item.icon />}
+                          <span>{item.title}</span>
                           <ChevronDown className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-180" />
-                        )}
+                        </SidebarMenuButton>
+                      </CollapsibleTrigger>
+                    ) : (
+                      <SidebarMenuButton asChild tooltip={item.title} isActive={item.isActive}>
+                        <a href={item.url}>
+                          {item.icon && <item.icon />}
+                          <span>{item.title}</span>
+                        </a>
                       </SidebarMenuButton>
-                    </CollapsibleTrigger>
+                    )}
                     {item.items && (
                       <CollapsibleContent>
                         <SidebarMenu>
