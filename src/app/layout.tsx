@@ -70,7 +70,7 @@ export default function RootLayout({
                 <SearchBar />
               </div>
             </header>
-            <div className="flex flex-1 flex-col gap-4 p-4 max-w-7xl mx-auto w-full">
+            <div className="flex flex-1 flex-col gap-4 p-4">
               {children}
             </div>
           </SidebarInset>
