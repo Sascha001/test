@@ -341,16 +341,10 @@ function RiskManagementAndActivitySection() {
 
 export default function TradingDashboard() {
   return (
-    <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-      <div className="md:col-span-3">
-        <TradingMetricsCards />
-      </div>
-      <div className="md:col-span-2">
-        <TradingDashboardContent />
-      </div>
-      <div className="md:col-span-1">
-        <RiskManagementAndActivitySection />
-      </div>
+    <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
+      <TradingMetricsCards />
+      <TradingDashboardContent />
+      <RiskManagementAndActivitySection />
     </div>
   );
 }
