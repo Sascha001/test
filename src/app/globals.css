@@ -132,37 +132,40 @@ body {
   position: relative !important;
 }
 
-/* Sidebar container */
-.group\/sidebar-wrapper [data-sidebar="sidebar"] {
+/* Sidebar base styling - expanded state */
+[data-sidebar="sidebar"] {
   width: var(--sidebar-width) !important;
-  transition: width 0.2s ease-in-out !important;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
   flex-shrink: 0 !important;
+  position: relative !important;
 }
 
-/* Collapsed sidebar width */
+/* Collapsed sidebar - icon only mode */
 .group\/sidebar-wrapper[data-collapsible="icon"] [data-sidebar="sidebar"] {
-  width: calc(var(--spacing) * 12) !important;
+  width: 4rem !important;
 }
 
-/* Main content container */
-.group\/sidebar-wrapper > main[data-sidebar="inset"] {
+/* Main content inset styling */
+main[data-sidebar="inset"] {
   flex: 1 !important;
   min-width: 0 !important;
-  width: calc(100vw - var(--sidebar-width)) !important;
-  transition: width 0.2s ease-in-out !important;
-  position: relative !important;
-  margin-left: var(--spacing) !important;
-  margin-top: var(--spacing) !important;
-  margin-bottom: var(--spacing) !important;
-  margin-right: var(--spacing) !important;
-  border-radius: calc(var(--radius) * 2) !important;
+  margin: 0.25rem !important;
+  margin-left: 0.125rem !important;
+  border-radius: 1rem !important;
   border: 1px solid hsl(var(--border)) !important;
   background: hsl(var(--background)) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  overflow: hidden !important;
 }
 
-/* Collapsed main content width */
-.group\/sidebar-wrapper[data-collapsible="icon"] > main[data-sidebar="inset"] {
-  width: calc(100vw - calc(var(--spacing) * 12)) !important;
+/* Content width when sidebar is expanded */
+.group\/sidebar-wrapper:not([data-collapsible="icon"]) main[data-sidebar="inset"] {
+  width: calc(100vw - var(--sidebar-width) - 0.375rem) !important;
+}
+
+/* Content width when sidebar is collapsed */
+.group\/sidebar-wrapper[data-collapsible="icon"] main[data-sidebar="inset"] {
+  width: calc(100vw - 4rem - 0.375rem) !important;
 }
 
 
