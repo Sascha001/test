@@ -17,36 +17,36 @@ export default function TradingDashboard() {
   return (
     <>
       {/* Welcome Section */}
-      <div className="rounded-xl bg-muted/50 p-4">
-        <h1 className="text-2xl font-bold">AI Trading Dashboard</h1>
-        <p className="text-muted-foreground">
+      <div className="rounded-lg bg-muted/50 p-3">
+        <h1 className="text-xl font-bold">AI Trading Dashboard</h1>
+        <p className="text-sm text-muted-foreground">
           Überwachen Sie KI-Empfehlungen und deren Unsicherheiten in Echtzeit
         </p>
       </div>
 
       {/* Key Metrics */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
         <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Portfolio Wert</CardTitle>
-            <DollarSign className="h-4 w-4 text-muted-foreground" />
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-1">
+            <CardTitle className="text-xs font-medium">Portfolio Wert</CardTitle>
+            <DollarSign className="h-3 w-3 text-muted-foreground" />
           </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">€127,432.50</div>
+          <CardContent className="pb-2">
+            <div className="text-lg font-bold">€127,432.50</div>
             <div className="flex items-center text-xs text-green-600">
-              <TrendingUp className="mr-1 h-3 w-3" />
+              <TrendingUp className="mr-1 h-2 w-2" />
               +2.34% heute
             </div>
           </CardContent>
         </Card>
 
         <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Aktive Positionen</CardTitle>
-            <Briefcase className="h-4 w-4 text-muted-foreground" />
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-1">
+            <CardTitle className="text-xs font-medium">Aktive Positionen</CardTitle>
+            <Briefcase className="h-3 w-3 text-muted-foreground" />
           </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">24</div>
+          <CardContent className="pb-2">
+            <div className="text-lg font-bold">24</div>
             <p className="text-xs text-muted-foreground">
               8 neue Empfehlungen
             </p>
@@ -54,12 +54,12 @@ export default function TradingDashboard() {
         </Card>
 
         <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">KI Vertrauen</CardTitle>
-            <Brain className="h-4 w-4 text-muted-foreground" />
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-1">
+            <CardTitle className="text-xs font-medium">KI Vertrauen</CardTitle>
+            <Brain className="h-3 w-3 text-muted-foreground" />
           </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">87%</div>
+          <CardContent className="pb-2">
+            <div className="text-lg font-bold">87%</div>
             <p className="text-xs text-muted-foreground">
               Durchschnittliche Konfidenz
             </p>
@@ -67,12 +67,12 @@ export default function TradingDashboard() {
         </Card>
 
         <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Unsicherheits-Score</CardTitle>
-            <AlertTriangle className="h-4 w-4 text-muted-foreground" />
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-1">
+            <CardTitle className="text-xs font-medium">Unsicherheits-Score</CardTitle>
+            <AlertTriangle className="h-3 w-3 text-muted-foreground" />
           </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">Medium</div>
+          <CardContent className="pb-2">
+            <div className="text-lg font-bold">Medium</div>
             <p className="text-xs text-yellow-600">
               3 Risiko-Alerts
             </p>
@@ -81,17 +81,17 @@ export default function TradingDashboard() {
       </div>
 
       {/* Main Content Grid */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
+      <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-7">
         {/* Trading Empfehlungen */}
         <Card className="col-span-4">
-          <CardHeader>
-            <CardTitle>Aktuelle KI-Empfehlungen</CardTitle>
-            <CardDescription>
+          <CardHeader className="pb-3">
+            <CardTitle className="text-base">Aktuelle KI-Empfehlungen</CardTitle>
+            <CardDescription className="text-xs">
               Neueste Trading-Signale mit Unsicherheitsanalyse
             </CardDescription>
           </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
+          <CardContent className="pt-0">
+            <div className="space-y-3">
               {[
                 {
                   symbol: "AAPL",
@@ -121,7 +121,7 @@ export default function TradingDashboard() {
                   actionColor: "text-blue-600"
                 }
               ].map((rec, i) => (
-                <div key={i} className="flex items-center justify-between border-b pb-3 last:border-b-0">
+                <div key={i} className="flex items-center justify-between border-b pb-2 last:border-b-0">
                   <div className="flex items-center space-x-4">
                     <div className="font-medium">{rec.symbol}</div>
                     <div className={`text-sm font-medium ${rec.actionColor}`}>
@@ -151,14 +151,14 @@ export default function TradingDashboard() {
 
         {/* Unsicherheits-Übersicht */}
         <Card className="col-span-3">
-          <CardHeader>
-            <CardTitle>Unsicherheits-Quellen</CardTitle>
-            <CardDescription>
+          <CardHeader className="pb-3">
+            <CardTitle className="text-base">Unsicherheits-Quellen</CardTitle>
+            <CardDescription className="text-xs">
               Analyse der verschiedenen Unsicherheitsfaktoren
             </CardDescription>
           </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
+          <CardContent className="pt-0">
+            <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-2">
                   <Brain className="h-4 w-4 text-blue-500" />
@@ -213,34 +213,34 @@ export default function TradingDashboard() {
       </div>
 
       {/* Risk Management & Recent Activity */}
-      <div className="grid gap-4 md:grid-cols-2">
+      <div className="grid gap-3 md:grid-cols-2">
         <Card>
-          <CardHeader>
-            <CardTitle>Risiko-Management</CardTitle>
-            <CardDescription>
+          <CardHeader className="pb-3">
+            <CardTitle className="text-base">Risiko-Management</CardTitle>
+            <CardDescription className="text-xs">
               Aktuelle Warnungen und Empfehlungen
             </CardDescription>
           </CardHeader>
-          <CardContent>
-            <div className="space-y-3">
-              <div className="flex items-center space-x-3 p-3 rounded-lg bg-red-50 dark:bg-red-950/10">
-                <XCircle className="h-5 w-5 text-red-500" />
+          <CardContent className="pt-0">
+            <div className="space-y-2">
+              <div className="flex items-center space-x-2 p-2 rounded-lg bg-red-50 dark:bg-red-950/10">
+                <XCircle className="h-4 w-4 text-red-500" />
                 <div className="flex-1">
                   <p className="text-sm font-medium">Hohe Volatilität erkannt</p>
                   <p className="text-xs text-muted-foreground">TSLA zeigt ungewöhnliche Kursbewegungen</p>
                 </div>
               </div>
               
-              <div className="flex items-center space-x-3 p-3 rounded-lg bg-yellow-50 dark:bg-yellow-950/10">
-                <AlertTriangle className="h-5 w-5 text-yellow-500" />
+              <div className="flex items-center space-x-2 p-2 rounded-lg bg-yellow-50 dark:bg-yellow-950/10">
+                <AlertTriangle className="h-4 w-4 text-yellow-500" />
                 <div className="flex-1">
                   <p className="text-sm font-medium">Datenqualität-Warnung</p>
                   <p className="text-xs text-muted-foreground">Verzögerung bei Realtime-Daten für NVDA</p>
                 </div>
               </div>
               
-              <div className="flex items-center space-x-3 p-3 rounded-lg bg-green-50 dark:bg-green-950/10">
-                <CheckCircle className="h-5 w-5 text-green-500" />
+              <div className="flex items-center space-x-2 p-2 rounded-lg bg-green-50 dark:bg-green-950/10">
+                <CheckCircle className="h-4 w-4 text-green-500" />
                 <div className="flex-1">
                   <p className="text-sm font-medium">Portfolio ausbalanciert</p>
                   <p className="text-xs text-muted-foreground">Diversifikation innerhalb der Zielwerte</p>
@@ -251,14 +251,14 @@ export default function TradingDashboard() {
         </Card>
 
         <Card>
-          <CardHeader>
-            <CardTitle>Aktivitäts-Feed</CardTitle>
-            <CardDescription>
+          <CardHeader className="pb-3">
+            <CardTitle className="text-base">Aktivitäts-Feed</CardTitle>
+            <CardDescription className="text-xs">
               Letzte Trading-Aktivitäten und KI-Updates
             </CardDescription>
           </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
+          <CardContent className="pt-0">
+            <div className="space-y-3">
               <div className="flex items-start space-x-3">
                 <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
                 <div className="flex-1">

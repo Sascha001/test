@@ -164,27 +164,27 @@ export default function PortfolioOverviewPage() {
   return (
     <>
       {/* Header */}
-      <div className="rounded-xl bg-muted/50 p-4">
-        <h1 className="text-2xl font-bold flex items-center gap-2">
-          <Building2 className="h-6 w-6" />
+      <div className="rounded-lg bg-muted/50 p-3">
+        <h1 className="text-xl font-bold flex items-center gap-2">
+          <Building2 className="h-5 w-5" />
           Portfolio Übersicht
         </h1>
-        <p className="text-muted-foreground">
+        <p className="text-sm text-muted-foreground">
           Detaillierte Aufschlüsselung Ihrer Vermögensallokation
         </p>
       </div>
 
       {/* Portfolio Summary */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
         <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Gesamt Portfolio</CardTitle>
-            <Building2 className="h-4 w-4 text-muted-foreground" />
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-1">
+            <CardTitle className="text-xs font-medium">Gesamt Portfolio</CardTitle>
+            <Building2 className="h-3 w-3 text-muted-foreground" />
           </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">€{totalValue.toLocaleString('de-DE', { minimumFractionDigits: 2 })}</div>
+          <CardContent className="pb-2">
+            <div className="text-lg font-bold">€{totalValue.toLocaleString('de-DE', { minimumFractionDigits: 2 })}</div>
             <div className="flex items-center text-xs text-green-600">
-              <TrendingUp className="mr-1 h-3 w-3" />
+              <TrendingUp className="mr-1 h-2 w-2" />
               +2.34% heute
             </div>
           </CardContent>
@@ -231,7 +231,7 @@ export default function PortfolioOverviewPage() {
       </div>
 
       {/* Main Chart and Details */}
-      <div className="grid gap-4 md:grid-cols-2">
+      <div className="grid gap-3 md:grid-cols-2">
         {/* Pie Chart */}
         <Card>
           <CardHeader>
@@ -241,7 +241,7 @@ export default function PortfolioOverviewPage() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="h-80">
+            <div className="h-64">
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                   <Pie
