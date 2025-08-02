@@ -25,7 +25,7 @@ export default function TradingDashboard() {
       </div>
 
       {/* Key Metrics */}
-      <div className="responsive-grid grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4">
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Portfolio Wert</CardTitle>
@@ -81,9 +81,9 @@ export default function TradingDashboard() {
       </div>
 
       {/* Main Content Grid */}
-      <div className="responsive-grid grid gap-4 grid-cols-1 xl:grid-cols-7">
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
         {/* Trading Empfehlungen */}
-        <Card className="xl:col-span-4">
+        <Card className="col-span-4">
           <CardHeader>
             <CardTitle>Aktuelle KI-Empfehlungen</CardTitle>
             <CardDescription>
@@ -150,7 +150,7 @@ export default function TradingDashboard() {
         </Card>
 
         {/* Unsicherheits-Übersicht */}
-        <Card className="xl:col-span-3">
+        <Card className="col-span-3">
           <CardHeader>
             <CardTitle>Unsicherheits-Quellen</CardTitle>
             <CardDescription>
@@ -213,7 +213,7 @@ export default function TradingDashboard() {
       </div>
 
       {/* Risk Management & Recent Activity */}
-      <div className="responsive-grid grid gap-4 grid-cols-1 lg:grid-cols-2">
+      <div className="grid gap-4 md:grid-cols-2">
         <Card>
           <CardHeader>
             <CardTitle>Risiko-Management</CardTitle>

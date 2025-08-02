@@ -133,25 +133,6 @@ body {
   box-sizing: border-box;
   padding: 1rem;
   gap: 1rem;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Responsive content wrapper that adapts to sidebar state */
-.content-wrapper {
-  max-width: min(1400px, 100%);
-  width: 100%;
-  margin: 0 auto;
-  transition: max-width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* When sidebar is collapsed, allow slightly wider content */
-.group[data-state="collapsed"] .content-wrapper {
-  max-width: min(1600px, 100%);
-}
-
-/* Smooth scaling for grid layouts */
-.responsive-grid {
-  transition: grid-template-columns 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Ensure all dashboard elements respect container boundaries */
