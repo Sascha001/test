@@ -70,7 +70,18 @@ const portfolioData = [
 
 const totalValue = 127432.52;
 
-const CustomTooltip = ({ active, payload }: any) => {
+interface TooltipProps {
+  active?: boolean;
+  payload?: Array<{
+    payload: {
+      category: string;
+      value: number;
+      percentage: number;
+    };
+  }>;
+}
+
+const CustomTooltip = ({ active, payload }: TooltipProps) => {
   if (active && payload && payload.length) {
     const data = payload[0].payload;
     return (
