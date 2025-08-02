@@ -44,10 +44,17 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <SidebarProvider>
-          <AppSidebar />
+        <SidebarProvider
+          style={
+            {
+              "--sidebar-width": "16rem",
+              "--header-height": "4rem",
+            } as React.CSSProperties
+          }
+        >
+          <AppSidebar variant="inset" />
           <SidebarInset>
-            <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
+            <header className="flex h-[--header-height] shrink-0 items-center gap-2 border-b px-4 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
               <SidebarTrigger className="-ml-1" />
               <Separator
                 orientation="vertical"
@@ -70,9 +77,9 @@ export default function RootLayout({
                 <SearchBar />
               </div>
             </header>
-            <div className="flex flex-1 flex-col gap-4 p-4">
+            <main className="flex flex-1 flex-col gap-4 p-4 @container/main">
               {children}
-            </div>
+            </main>
           </SidebarInset>
         </SidebarProvider>
       </body>
