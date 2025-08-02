@@ -136,6 +136,25 @@ body {
   transition: all 0.2s ease-in-out;
 }
 
+/* Responsive layout - expand when sidebar is collapsed */
+.peer[data-state="collapsed"] ~ main .dashboard-content {
+  width: calc(100vw - 3rem);
+  transition: width 0.2s ease-in-out;
+}
+
+.peer[data-state="expanded"] ~ main .dashboard-content {
+  width: calc(100vw - 16rem);
+  transition: width 0.2s ease-in-out;
+}
+
+/* Ensure proper responsive behavior for different screen sizes */
+@media (max-width: 768px) {
+  .dashboard-content {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
 /* Ensure all dashboard elements respect container boundaries */
 .dashboard-content *,
 .dashboard-content *::before,
