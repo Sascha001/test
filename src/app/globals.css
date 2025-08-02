@@ -124,32 +124,45 @@ body {
   font-family: var(--font-sans), system-ui, sans-serif;
 }
 
-/* Fix sidebar layout to prevent overlapping */
+/* V0.dev layout implementation */
 .group\/sidebar-wrapper {
   display: flex !important;
   width: 100vw !important;
   min-height: 100vh !important;
+  position: relative !important;
 }
 
-/* Sidebar should take its natural width */
-.group\/sidebar-wrapper > * {
-  flex-shrink: 0;
+/* Sidebar container */
+.group\/sidebar-wrapper [data-sidebar="sidebar"] {
+  width: var(--sidebar-width) !important;
+  transition: width 0.2s ease-in-out !important;
+  flex-shrink: 0 !important;
 }
 
-/* Main content should fill remaining space */
-.group\/sidebar-wrapper > main {
+/* Collapsed sidebar width */
+.group\/sidebar-wrapper[data-collapsible="icon"] [data-sidebar="sidebar"] {
+  width: calc(var(--spacing) * 12) !important;
+}
+
+/* Main content container */
+.group\/sidebar-wrapper > main[data-sidebar="inset"] {
   flex: 1 !important;
   min-width: 0 !important;
-  width: auto !important;
+  width: calc(100vw - var(--sidebar-width)) !important;
+  transition: width 0.2s ease-in-out !important;
   position: relative !important;
+  margin-left: var(--spacing) !important;
+  margin-top: var(--spacing) !important;
+  margin-bottom: var(--spacing) !important;
+  margin-right: var(--spacing) !important;
+  border-radius: calc(var(--radius) * 2) !important;
+  border: 1px solid hsl(var(--border)) !important;
+  background: hsl(var(--background)) !important;
 }
 
-/* Ensure SidebarInset takes full available space */
-main[data-sidebar="inset"] {
-  flex: 1 !important;
-  width: 100% !important;
-  margin-left: 0 !important;
-  position: relative !important;
+/* Collapsed main content width */
+.group\/sidebar-wrapper[data-collapsible="icon"] > main[data-sidebar="inset"] {
+  width: calc(100vw - calc(var(--spacing) * 12)) !important;
 }
 
 
