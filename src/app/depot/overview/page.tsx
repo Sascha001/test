@@ -1,8 +1,10 @@
 "use client"
 
+import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from "recharts";
-import { TrendingUp, Building2, Coins, Banknote, PiggyBank } from "lucide-react";
+import { TrendingUp, Building2, Coins, Banknote, PiggyBank, ChevronDown, ChevronUp } from "lucide-react";
 
 const portfolioData = [
   {
@@ -70,6 +72,58 @@ const portfolioData = [
 
 const totalValue = 127432.52;
 
+const performanceData = {
+  "3M": [
+    { category: "Einzelaktien", performance: "+8.4%", color: "text-green-600" },
+    { category: "ETFs", performance: "+5.2%", color: "text-green-600" },
+    { category: "Anleihen", performance: "-1.8%", color: "text-red-600" },
+    { category: "Rohstoffe", performance: "+12.1%", color: "text-green-600" },
+    { category: "Cash", performance: "+0.3%", color: "text-green-600" },
+  ],
+  "6M": [
+    { category: "Einzelaktien", performance: "+15.7%", color: "text-green-600" },
+    { category: "ETFs", performance: "+9.8%", color: "text-green-600" },
+    { category: "Anleihen", performance: "-3.2%", color: "text-red-600" },
+    { category: "Rohstoffe", performance: "+18.5%", color: "text-green-600" },
+    { category: "Cash", performance: "+1.1%", color: "text-green-600" },
+  ],
+  "9M": [
+    { category: "Einzelaktien", performance: "+22.3%", color: "text-green-600" },
+    { category: "ETFs", performance: "+14.6%", color: "text-green-600" },
+    { category: "Anleihen", performance: "-2.1%", color: "text-red-600" },
+    { category: "Rohstoffe", performance: "+25.8%", color: "text-green-600" },
+    { category: "Cash", performance: "+1.8%", color: "text-green-600" },
+  ],
+  "1J": [
+    { category: "Einzelaktien", performance: "+28.9%", color: "text-green-600" },
+    { category: "ETFs", performance: "+19.4%", color: "text-green-600" },
+    { category: "Anleihen", performance: "+1.2%", color: "text-green-600" },
+    { category: "Rohstoffe", performance: "+32.7%", color: "text-green-600" },
+    { category: "Cash", performance: "+2.5%", color: "text-green-600" },
+  ],
+  "3J": [
+    { category: "Einzelaktien", performance: "+78.5%", color: "text-green-600" },
+    { category: "ETFs", performance: "+52.3%", color: "text-green-600" },
+    { category: "Anleihen", performance: "-8.7%", color: "text-red-600" },
+    { category: "Rohstoffe", performance: "+89.2%", color: "text-green-600" },
+    { category: "Cash", performance: "+7.8%", color: "text-green-600" },
+  ],
+  "5J": [
+    { category: "Einzelaktien", performance: "+156.7%", color: "text-green-600" },
+    { category: "ETFs", performance: "+98.4%", color: "text-green-600" },
+    { category: "Anleihen", performance: "+12.3%", color: "text-green-600" },
+    { category: "Rohstoffe", performance: "+134.8%", color: "text-green-600" },
+    { category: "Cash", performance: "+18.9%", color: "text-green-600" },
+  ],
+  "Gesamt": [
+    { category: "Einzelaktien", performance: "+234.5%", color: "text-green-600" },
+    { category: "ETFs", performance: "+187.3%", color: "text-green-600" },
+    { category: "Anleihen", performance: "+45.7%", color: "text-green-600" },
+    { category: "Rohstoffe", performance: "+298.1%", color: "text-green-600" },
+    { category: "Cash", performance: "+34.2%", color: "text-green-600" },
+  ],
+};
+
 interface TooltipProps {
   active?: boolean;
   payload?: Array<{
@@ -97,6 +151,16 @@ const CustomTooltip = ({ active, payload }: TooltipProps) => {
 };
 
 export default function PortfolioOverviewPage() {
+  const [expandedCategories, setExpandedCategories] = useState<Record<string, boolean>>({});
+  const [selectedTimePeriod, setSelectedTimePeriod] = useState<keyof typeof performanceData>("3M");
+
+  const toggleCategory = (category: string) => {
+    setExpandedCategories(prev => ({
+      ...prev,
+      [category]: !prev[category]
+    }));
+  };
+
   return (
     <>
       {/* Header */}
@@ -212,6 +276,7 @@ export default function PortfolioOverviewPage() {
             <div className="space-y-4">
               {portfolioData.map((category, index) => {
                 const Icon = category.icon;
+                const isExpanded = expandedCategories[category.category];
                 return (
                   <div key={index} className="space-y-2">
                     <div className="flex items-center justify-between">
@@ -223,24 +288,52 @@ export default function PortfolioOverviewPage() {
                         <Icon className="h-4 w-4" />
                         <span className="font-medium">{category.category}</span>
                       </div>
-                      <div className="text-right">
-                        <div className="font-medium">€{category.value.toLocaleString('de-DE')}</div>
-                        <div className="text-xs text-muted-foreground">{category.percentage}%</div>
+                      <div className="flex items-center space-x-2">
+                        <div className="text-right">
+                          <div className="font-medium">€{category.value.toLocaleString('de-DE')}</div>
+                          <div className="text-xs text-muted-foreground">{category.percentage}%</div>
+                        </div>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => toggleCategory(category.category)}
+                          className="h-6 w-6 p-0"
+                        >
+                          {isExpanded ? (
+                            <ChevronUp className="h-3 w-3" />
+                          ) : (
+                            <ChevronDown className="h-3 w-3" />
+                          )}
+                        </Button>
                       </div>
                     </div>
                     
-                    {/* Individual Holdings */}
-                    <div className="ml-5 space-y-1">
-                      {category.holdings.map((holding, holdingIndex) => (
-                        <div key={holdingIndex} className="flex justify-between text-sm">
-                          <span className="text-muted-foreground">{holding.name}</span>
-                          <div className="text-right">
-                            <span className="text-muted-foreground">€{holding.value.toLocaleString('de-DE')}</span>
-                            <span className="ml-2 text-xs text-muted-foreground">({holding.weight})</span>
+                    {/* Individual Holdings - Collapsible */}
+                    {isExpanded && (
+                      <div className="ml-5 space-y-1">
+                        {category.holdings.map((holding, holdingIndex) => (
+                          <div key={holdingIndex} className="flex justify-between text-sm">
+                            <span className="text-muted-foreground">{holding.name}</span>
+                            <div className="text-right">
+                              <span className="text-muted-foreground">€{holding.value.toLocaleString('de-DE')}</span>
+                              <span className="ml-2 text-xs text-muted-foreground">({holding.weight})</span>
+                            </div>
                           </div>
-                        </div>
-                      ))}
-                    </div>
+                        ))}
+                      </div>
+                    )}
+                    
+                    {/* Show/Hide Button */}
+                    {!isExpanded && (
+                      <div className="ml-5">
+                        <button
+                          onClick={() => toggleCategory(category.category)}
+                          className="text-xs text-blue-600 hover:text-blue-800 hover:underline"
+                        >
+                          {category.holdings.length} Positionen anzeigen
+                        </button>
+                      </div>
+                    )}
                   </div>
                 );
               })}
@@ -254,24 +347,46 @@ export default function PortfolioOverviewPage() {
         <CardHeader>
           <CardTitle>Performance Übersicht</CardTitle>
           <CardDescription>
-            Entwicklung der einzelnen Kategorien
+            Entwicklung der einzelnen Kategorien über verschiedene Zeiträume
           </CardDescription>
         </CardHeader>
         <CardContent>
+          {/* Time Period Selector */}
+          <div className="flex flex-wrap gap-2 mb-6 p-3 bg-muted/30 rounded-lg">
+            {Object.keys(performanceData).map((period) => (
+              <Button
+                key={period}
+                variant={selectedTimePeriod === period ? "default" : "outline"}
+                size="sm"
+                onClick={() => setSelectedTimePeriod(period as keyof typeof performanceData)}
+                className="text-xs"
+              >
+                {period === "1J" ? "1 Jahr" : 
+                 period === "3J" ? "3 Jahre" : 
+                 period === "5J" ? "5 Jahre" :
+                 period === "Gesamt" ? "Gesamtzeit" :
+                 period}
+              </Button>
+            ))}
+          </div>
+
+          {/* Performance Data */}
           <div className="grid gap-4 md:grid-cols-5">
-            {[
-              { category: "Einzelaktien", performance: "+8.4%", color: "text-green-600" },
-              { category: "ETFs", performance: "+5.2%", color: "text-green-600" },
-              { category: "Anleihen", performance: "-1.8%", color: "text-red-600" },
-              { category: "Rohstoffe", performance: "+12.1%", color: "text-green-600" },
-              { category: "Cash", performance: "+0.3%", color: "text-green-600" },
-            ].map((item, index) => (
+            {performanceData[selectedTimePeriod].map((item, index) => (
               <div key={index} className="text-center p-3 rounded-lg bg-muted/50">
                 <div className="text-sm font-medium">{item.category}</div>
                 <div className={`text-lg font-bold ${item.color}`}>
                   {item.performance}
                 </div>
-                <div className="text-xs text-muted-foreground">30 Tage</div>
+                <div className="text-xs text-muted-foreground">
+                  {selectedTimePeriod === "3M" ? "3 Monate" :
+                   selectedTimePeriod === "6M" ? "6 Monate" :
+                   selectedTimePeriod === "9M" ? "9 Monate" :
+                   selectedTimePeriod === "1J" ? "1 Jahr" :
+                   selectedTimePeriod === "3J" ? "3 Jahre" :
+                   selectedTimePeriod === "5J" ? "5 Jahre" :
+                   "Gesamtzeit"}
+                </div>
               </div>
             ))}
           </div>
