@@ -15,7 +15,7 @@ import {
 
 export default function TradingDashboard() {
   return (
-    <>
+    <div className="max-w-full overflow-hidden">
       {/* Welcome Section */}
       <div className="rounded-xl bg-muted/50 p-4">
         <h1 className="text-2xl font-bold">AI Trading Dashboard</h1>
@@ -25,7 +25,7 @@ export default function TradingDashboard() {
       </div>
 
       {/* Key Metrics */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 w-full">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Portfolio Wert</CardTitle>
@@ -81,7 +81,7 @@ export default function TradingDashboard() {
       </div>
 
       {/* Main Content Grid */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7 w-full">
         {/* Trading Empfehlungen */}
         <Card className="col-span-4">
           <CardHeader>
@@ -213,7 +213,7 @@ export default function TradingDashboard() {
       </div>
 
       {/* Risk Management & Recent Activity */}
-      <div className="grid gap-4 md:grid-cols-2">
+      <div className="grid gap-4 md:grid-cols-2 w-full">
         <Card>
           <CardHeader>
             <CardTitle>Risiko-Management</CardTitle>
@@ -294,6 +294,6 @@ export default function TradingDashboard() {
           </CardContent>
         </Card>
       </div>
-    </>
+    </div>
   );
 }
