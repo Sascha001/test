@@ -1,0 +1,271 @@
+"use client"
+
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from "recharts";
+import { TrendingUp, Building2, Coins, Banknote, PiggyBank } from "lucide-react";
+
+const portfolioData = [
+  {
+    category: "Einzelaktien",
+    value: 50973.00,
+    percentage: 40,
+    color: "#3b82f6",
+    icon: TrendingUp,
+    holdings: [
+      { name: "AAPL", value: 15291.80, weight: "12%" },
+      { name: "NVDA", value: 12746.60, weight: "10%" },
+      { name: "TSLA", value: 10194.60, weight: "8%" },
+      { name: "META", value: 7645.95, weight: "6%" },
+      { name: "MSFT", value: 5093.85, weight: "4%" }
+    ]
+  },
+  {
+    category: "ETFs",
+    value: 44601.38,
+    percentage: 35,
+    color: "#10b981",
+    icon: Building2,
+    holdings: [
+      { name: "SPDR S&P 500", value: 17873.48, weight: "14%" },
+      { name: "Invesco QQQ", value: 14318.78, weight: "11.2%" },
+      { name: "iShares Europe", value: 8954.99, weight: "7%" },
+      { name: "Vanguard Total World", value: 3454.13, weight: "2.8%" }
+    ]
+  },
+  {
+    category: "Anleihen",
+    value: 19114.88,
+    percentage: 15,
+    color: "#8b5cf6",
+    icon: Banknote,
+    holdings: [
+      { name: "Deutsche Staatsanleihen", value: 9557.44, weight: "7.5%" },
+      { name: "US Treasury Bonds", value: 6371.63, weight: "5%" },
+      { name: "Corporate Bonds EUR", value: 3185.81, weight: "2.5%" }
+    ]
+  },
+  {
+    category: "Rohstoffe",
+    value: 8920.28,
+    percentage: 7,
+    color: "#f59e0b",
+    icon: Coins,
+    holdings: [
+      { name: "Gold ETF", value: 6371.63, weight: "5%" },
+      { name: "Silber ETF", value: 2548.65, weight: "2%" }
+    ]
+  },
+  {
+    category: "Cash & Geldmarkt",
+    value: 3822.98,
+    percentage: 3,
+    color: "#6b7280",
+    icon: PiggyBank,
+    holdings: [
+      { name: "Tagesgeld", value: 2548.65, weight: "2%" },
+      { name: "Geldmarkt-ETF", value: 1274.33, weight: "1%" }
+    ]
+  }
+];
+
+const totalValue = 127432.52;
+
+const CustomTooltip = ({ active, payload }: any) => {
+  if (active && payload && payload.length) {
+    const data = payload[0].payload;
+    return (
+      <div className="bg-background border rounded-lg p-3 shadow-lg">
+        <p className="font-medium">{data.category}</p>
+        <p className="text-sm text-muted-foreground">
+          €{data.value.toLocaleString('de-DE', { minimumFractionDigits: 2 })} ({data.percentage}%)
+        </p>
+      </div>
+    );
+  }
+  return null;
+};
+
+export default function PortfolioOverviewPage() {
+  return (
+    <>
+      {/* Header */}
+      <div className="rounded-xl bg-muted/50 p-4">
+        <h1 className="text-2xl font-bold flex items-center gap-2">
+          <Building2 className="h-6 w-6" />
+          Portfolio Übersicht
+        </h1>
+        <p className="text-muted-foreground">
+          Detaillierte Aufschlüsselung Ihrer Vermögensallokation
+        </p>
+      </div>
+
+      {/* Portfolio Summary */}
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Gesamt Portfolio</CardTitle>
+            <Building2 className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">€{totalValue.toLocaleString('de-DE', { minimumFractionDigits: 2 })}</div>
+            <div className="flex items-center text-xs text-green-600">
+              <TrendingUp className="mr-1 h-3 w-3" />
+              +2.34% heute
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Anzahl Positionen</CardTitle>
+            <TrendingUp className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">18</div>
+            <p className="text-xs text-muted-foreground">
+              5 Kategorien
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Größte Position</CardTitle>
+            <Coins className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">12%</div>
+            <p className="text-xs text-muted-foreground">
+              AAPL (€15,291.80)
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Diversifikation</CardTitle>
+            <PiggyBank className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">Gut</div>
+            <p className="text-xs text-green-600">
+              Ausgewogene Allokation
+            </p>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Main Chart and Details */}
+      <div className="grid gap-4 md:grid-cols-2">
+        {/* Pie Chart */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Vermögensallokation</CardTitle>
+            <CardDescription>
+              Verteilung nach Anlageklassen
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="h-80">
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Pie
+                    data={portfolioData}
+                    cx="50%"
+                    cy="50%"
+                    innerRadius={60}
+                    outerRadius={120}
+                    paddingAngle={2}
+                    dataKey="value"
+                  >
+                    {portfolioData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={entry.color} />
+                    ))}
+                  </Pie>
+                  <Tooltip content={<CustomTooltip />} />
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Category Legend & Details */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Kategorien Details</CardTitle>
+            <CardDescription>
+              Aufschlüsselung nach Anlageklassen
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              {portfolioData.map((category, index) => {
+                const Icon = category.icon;
+                return (
+                  <div key={index} className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-2">
+                        <div 
+                          className="w-3 h-3 rounded-full" 
+                          style={{ backgroundColor: category.color }}
+                        />
+                        <Icon className="h-4 w-4" />
+                        <span className="font-medium">{category.category}</span>
+                      </div>
+                      <div className="text-right">
+                        <div className="font-medium">€{category.value.toLocaleString('de-DE')}</div>
+                        <div className="text-xs text-muted-foreground">{category.percentage}%</div>
+                      </div>
+                    </div>
+                    
+                    {/* Individual Holdings */}
+                    <div className="ml-5 space-y-1">
+                      {category.holdings.map((holding, holdingIndex) => (
+                        <div key={holdingIndex} className="flex justify-between text-sm">
+                          <span className="text-muted-foreground">{holding.name}</span>
+                          <div className="text-right">
+                            <span className="text-muted-foreground">€{holding.value.toLocaleString('de-DE')}</span>
+                            <span className="ml-2 text-xs text-muted-foreground">({holding.weight})</span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Performance Overview */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Performance Übersicht</CardTitle>
+          <CardDescription>
+            Entwicklung der einzelnen Kategorien
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="grid gap-4 md:grid-cols-5">
+            {[
+              { category: "Einzelaktien", performance: "+8.4%", color: "text-green-600" },
+              { category: "ETFs", performance: "+5.2%", color: "text-green-600" },
+              { category: "Anleihen", performance: "-1.8%", color: "text-red-600" },
+              { category: "Rohstoffe", performance: "+12.1%", color: "text-green-600" },
+              { category: "Cash", performance: "+0.3%", color: "text-green-600" },
+            ].map((item, index) => (
+              <div key={index} className="text-center p-3 rounded-lg bg-muted/50">
+                <div className="text-sm font-medium">{item.category}</div>
+                <div className={`text-lg font-bold ${item.color}`}>
+                  {item.performance}
+                </div>
+                <div className="text-xs text-muted-foreground">30 Tage</div>
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+    </>
+  );
+}
