@@ -124,6 +124,34 @@ body {
   font-family: var(--font-sans), system-ui, sans-serif;
 }
 
+/* Fix sidebar layout to prevent overlapping */
+.group\/sidebar-wrapper {
+  display: flex !important;
+  width: 100vw !important;
+  min-height: 100vh !important;
+}
+
+/* Sidebar should take its natural width */
+.group\/sidebar-wrapper > * {
+  flex-shrink: 0;
+}
+
+/* Main content should fill remaining space */
+.group\/sidebar-wrapper > main {
+  flex: 1 !important;
+  min-width: 0 !important;
+  width: auto !important;
+  position: relative !important;
+}
+
+/* Ensure SidebarInset takes full available space */
+main[data-sidebar="inset"] {
+  flex: 1 !important;
+  width: 100% !important;
+  margin-left: 0 !important;
+  position: relative !important;
+}
+
 
 /* Sidebar hover effects with contrasting colors */
 [data-sidebar="menu-button"]:hover {
