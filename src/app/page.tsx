@@ -15,7 +15,7 @@ import {
 
 export default function TradingDashboard() {
   return (
-    <>
+    <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
       {/* Welcome Section */}
       <div className="rounded-lg bg-muted/50 p-3">
         <h1 className="text-xl font-bold">AI Trading Dashboard</h1>
@@ -294,6 +294,6 @@ export default function TradingDashboard() {
           </CardContent>
         </Card>
       </div>
-    </>
+    </div>
   );
 }
