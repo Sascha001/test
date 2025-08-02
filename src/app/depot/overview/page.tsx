@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from "recharts";
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 import { TrendingUp, Building2, Coins, Banknote, PiggyBank, ChevronDown, ChevronUp } from "lucide-react";
 
 const portfolioData = [
@@ -162,9 +162,9 @@ export default function PortfolioOverviewPage() {
   };
 
   return (
-    <>
+    <div className="h-[calc(100vh-8rem)] flex flex-col space-y-4 overflow-hidden">
       {/* Header */}
-      <div className="rounded-xl bg-muted/50 p-4">
+      <div className="rounded-xl bg-muted/50 p-4 flex-shrink-0">
         <h1 className="text-2xl font-bold flex items-center gap-2">
           <Building2 className="h-6 w-6" />
           Portfolio Übersicht
@@ -175,7 +175,7 @@ export default function PortfolioOverviewPage() {
       </div>
 
       {/* Portfolio Summary */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 flex-shrink-0">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Gesamt Portfolio</CardTitle>
@@ -230,18 +230,18 @@ export default function PortfolioOverviewPage() {
         </Card>
       </div>
 
-      {/* Main Chart and Details */}
-      <div className="grid gap-4 md:grid-cols-2">
+      {/* Main Chart and Details - Scrollable */}
+      <div className="grid gap-4 md:grid-cols-2 flex-1 min-h-0">
         {/* Pie Chart */}
-        <Card>
-          <CardHeader>
+        <Card className="flex flex-col">
+          <CardHeader className="flex-shrink-0">
             <CardTitle>Vermögensallokation</CardTitle>
             <CardDescription>
               Verteilung nach Anlageklassen
             </CardDescription>
           </CardHeader>
-          <CardContent>
-            <div className="h-80">
+          <CardContent className="flex-1 min-h-0 flex items-center justify-center">
+            <div className="h-full w-full max-h-80">
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                   <Pie
@@ -265,15 +265,15 @@ export default function PortfolioOverviewPage() {
         </Card>
 
         {/* Category Legend & Details */}
-        <Card>
-          <CardHeader>
+        <Card className="flex flex-col">
+          <CardHeader className="flex-shrink-0">
             <CardTitle>Kategorien Details</CardTitle>
             <CardDescription>
               Aufschlüsselung nach Anlageklassen
             </CardDescription>
           </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
+          <CardContent className="flex-1 min-h-0">
+            <div className="h-full overflow-y-auto space-y-4 pr-2">
               {portfolioData.map((category, index) => {
                 const Icon = category.icon;
                 const isExpanded = expandedCategories[category.category];
@@ -337,61 +337,60 @@ export default function PortfolioOverviewPage() {
                   </div>
                 );
               })}
+
+              {/* Performance Overview - Scrollable */}
+              <div className="space-y-4 pt-6 border-t">
+                <div>
+                  <h3 className="font-semibold mb-2">Performance Übersicht</h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Entwicklung der einzelnen Kategorien über verschiedene Zeiträume
+                  </p>
+                </div>
+
+                {/* Time Period Selector */}
+                <div className="flex flex-wrap gap-2 p-3 bg-muted/30 rounded-lg">
+                  {Object.keys(performanceData).map((period) => (
+                    <Button
+                      key={period}
+                      variant={selectedTimePeriod === period ? "default" : "outline"}
+                      size="sm"
+                      onClick={() => setSelectedTimePeriod(period as keyof typeof performanceData)}
+                      className="text-xs"
+                    >
+                      {period === "1J" ? "1 Jahr" : 
+                       period === "3J" ? "3 Jahre" : 
+                       period === "5J" ? "5 Jahre" :
+                       period === "Gesamt" ? "Gesamtzeit" :
+                       period}
+                    </Button>
+                  ))}
+                </div>
+
+                {/* Performance Data */}
+                <div className="grid gap-3 grid-cols-2">
+                  {performanceData[selectedTimePeriod].map((item, index) => (
+                    <div key={index} className="text-center p-3 rounded-lg bg-muted/50">
+                      <div className="text-sm font-medium">{item.category}</div>
+                      <div className={`text-lg font-bold ${item.color}`}>
+                        {item.performance}
+                      </div>
+                      <div className="text-xs text-muted-foreground">
+                        {selectedTimePeriod === "3M" ? "3 Monate" :
+                         selectedTimePeriod === "6M" ? "6 Monate" :
+                         selectedTimePeriod === "9M" ? "9 Monate" :
+                         selectedTimePeriod === "1J" ? "1 Jahr" :
+                         selectedTimePeriod === "3J" ? "3 Jahre" :
+                         selectedTimePeriod === "5J" ? "5 Jahre" :
+                         "Gesamtzeit"}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </CardContent>
         </Card>
       </div>
-
-      {/* Performance Overview */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Performance Übersicht</CardTitle>
-          <CardDescription>
-            Entwicklung der einzelnen Kategorien über verschiedene Zeiträume
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          {/* Time Period Selector */}
-          <div className="flex flex-wrap gap-2 mb-6 p-3 bg-muted/30 rounded-lg">
-            {Object.keys(performanceData).map((period) => (
-              <Button
-                key={period}
-                variant={selectedTimePeriod === period ? "default" : "outline"}
-                size="sm"
-                onClick={() => setSelectedTimePeriod(period as keyof typeof performanceData)}
-                className="text-xs"
-              >
-                {period === "1J" ? "1 Jahr" : 
-                 period === "3J" ? "3 Jahre" : 
-                 period === "5J" ? "5 Jahre" :
-                 period === "Gesamt" ? "Gesamtzeit" :
-                 period}
-              </Button>
-            ))}
-          </div>
-
-          {/* Performance Data */}
-          <div className="grid gap-4 md:grid-cols-5">
-            {performanceData[selectedTimePeriod].map((item, index) => (
-              <div key={index} className="text-center p-3 rounded-lg bg-muted/50">
-                <div className="text-sm font-medium">{item.category}</div>
-                <div className={`text-lg font-bold ${item.color}`}>
-                  {item.performance}
-                </div>
-                <div className="text-xs text-muted-foreground">
-                  {selectedTimePeriod === "3M" ? "3 Monate" :
-                   selectedTimePeriod === "6M" ? "6 Monate" :
-                   selectedTimePeriod === "9M" ? "9 Monate" :
-                   selectedTimePeriod === "1J" ? "1 Jahr" :
-                   selectedTimePeriod === "3J" ? "3 Jahre" :
-                   selectedTimePeriod === "5J" ? "5 Jahre" :
-                   "Gesamtzeit"}
-                </div>
-              </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
-    </>
+    </div>
   );
 }

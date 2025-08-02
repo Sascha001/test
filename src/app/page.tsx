@@ -15,9 +15,9 @@ import {
 
 export default function TradingDashboard() {
   return (
-    <>
+    <div className="h-[calc(100vh-8rem)] flex flex-col space-y-4 overflow-hidden">
       {/* Welcome Section */}
-      <div className="rounded-xl bg-muted/50 p-4">
+      <div className="rounded-xl bg-muted/50 p-4 flex-shrink-0">
         <h1 className="text-2xl font-bold">AI Trading Dashboard</h1>
         <p className="text-muted-foreground">
           Überwachen Sie KI-Empfehlungen und deren Unsicherheiten in Echtzeit
@@ -25,7 +25,7 @@ export default function TradingDashboard() {
       </div>
 
       {/* Key Metrics */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 flex-shrink-0">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Portfolio Wert</CardTitle>
@@ -80,18 +80,18 @@ export default function TradingDashboard() {
         </Card>
       </div>
 
-      {/* Main Content Grid */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
+      {/* Main Content Grid - Scrollable */}
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7 flex-1 min-h-0">
         {/* Trading Empfehlungen */}
-        <Card className="col-span-4">
-          <CardHeader>
+        <Card className="col-span-4 flex flex-col">
+          <CardHeader className="flex-shrink-0">
             <CardTitle>Aktuelle KI-Empfehlungen</CardTitle>
             <CardDescription>
               Neueste Trading-Signale mit Unsicherheitsanalyse
             </CardDescription>
           </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
+          <CardContent className="flex-1 min-h-0">
+            <div className="h-full overflow-y-auto space-y-4 pr-2">
               {[
                 {
                   symbol: "AAPL",
@@ -118,6 +118,24 @@ export default function TradingDashboard() {
                   price: 459.12,
                   uncertainty: "Hoch",
                   uncertaintyColor: "text-red-600",
+                  actionColor: "text-blue-600"
+                },
+                {
+                  symbol: "MSFT",
+                  action: "KAUFEN",
+                  confidence: 88,
+                  price: 415.67,
+                  uncertainty: "Niedrig",
+                  uncertaintyColor: "text-green-600",
+                  actionColor: "text-green-600"
+                },
+                {
+                  symbol: "GOOGL",
+                  action: "HALTEN",
+                  confidence: 72,
+                  price: 156.89,
+                  uncertainty: "Mittel",
+                  uncertaintyColor: "text-yellow-600",
                   actionColor: "text-blue-600"
                 }
               ].map((rec, i) => (
@@ -150,15 +168,15 @@ export default function TradingDashboard() {
         </Card>
 
         {/* Unsicherheits-Übersicht */}
-        <Card className="col-span-3">
-          <CardHeader>
+        <Card className="col-span-3 flex flex-col">
+          <CardHeader className="flex-shrink-0">
             <CardTitle>Unsicherheits-Quellen</CardTitle>
             <CardDescription>
               Analyse der verschiedenen Unsicherheitsfaktoren
             </CardDescription>
           </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
+          <CardContent className="flex-1 min-h-0">
+            <div className="h-full overflow-y-auto space-y-4 pr-2">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-2">
                   <Brain className="h-4 w-4 text-blue-500" />
@@ -207,93 +225,72 @@ export default function TradingDashboard() {
                   <div className="w-3/5 h-3 bg-gradient-to-r from-green-500 via-yellow-500 to-red-500 rounded-full"></div>
                 </div>
               </div>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
 
-      {/* Risk Management & Recent Activity */}
-      <div className="grid gap-4 md:grid-cols-2">
-        <Card>
-          <CardHeader>
-            <CardTitle>Risiko-Management</CardTitle>
-            <CardDescription>
-              Aktuelle Warnungen und Empfehlungen
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-3">
-              <div className="flex items-center space-x-3 p-3 rounded-lg bg-red-50 dark:bg-red-950/10">
-                <XCircle className="h-5 w-5 text-red-500" />
-                <div className="flex-1">
-                  <p className="text-sm font-medium">Hohe Volatilität erkannt</p>
-                  <p className="text-xs text-muted-foreground">TSLA zeigt ungewöhnliche Kursbewegungen</p>
+              {/* Additional scrollable content */}
+              <div className="space-y-3 pt-4 border-t">
+                <div className="flex items-center space-x-3 p-3 rounded-lg bg-red-50 dark:bg-red-950/10">
+                  <XCircle className="h-5 w-5 text-red-500" />
+                  <div className="flex-1">
+                    <p className="text-sm font-medium">Hohe Volatilität erkannt</p>
+                    <p className="text-xs text-muted-foreground">TSLA zeigt ungewöhnliche Kursbewegungen</p>
+                  </div>
                 </div>
-              </div>
-              
-              <div className="flex items-center space-x-3 p-3 rounded-lg bg-yellow-50 dark:bg-yellow-950/10">
-                <AlertTriangle className="h-5 w-5 text-yellow-500" />
-                <div className="flex-1">
-                  <p className="text-sm font-medium">Datenqualität-Warnung</p>
-                  <p className="text-xs text-muted-foreground">Verzögerung bei Realtime-Daten für NVDA</p>
+                
+                <div className="flex items-center space-x-3 p-3 rounded-lg bg-yellow-50 dark:bg-yellow-950/10">
+                  <AlertTriangle className="h-5 w-5 text-yellow-500" />
+                  <div className="flex-1">
+                    <p className="text-sm font-medium">Datenqualität-Warnung</p>
+                    <p className="text-xs text-muted-foreground">Verzögerung bei Realtime-Daten für NVDA</p>
+                  </div>
                 </div>
-              </div>
-              
-              <div className="flex items-center space-x-3 p-3 rounded-lg bg-green-50 dark:bg-green-950/10">
-                <CheckCircle className="h-5 w-5 text-green-500" />
-                <div className="flex-1">
-                  <p className="text-sm font-medium">Portfolio ausbalanciert</p>
-                  <p className="text-xs text-muted-foreground">Diversifikation innerhalb der Zielwerte</p>
+                
+                <div className="flex items-center space-x-3 p-3 rounded-lg bg-green-50 dark:bg-green-950/10">
+                  <CheckCircle className="h-5 w-5 text-green-500" />
+                  <div className="flex-1">
+                    <p className="text-sm font-medium">Portfolio ausbalanciert</p>
+                    <p className="text-xs text-muted-foreground">Diversifikation innerhalb der Zielwerte</p>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
 
-        <Card>
-          <CardHeader>
-            <CardTitle>Aktivitäts-Feed</CardTitle>
-            <CardDescription>
-              Letzte Trading-Aktivitäten und KI-Updates
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              <div className="flex items-start space-x-3">
-                <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
-                <div className="flex-1">
-                  <p className="text-sm font-medium">AAPL Position eröffnet</p>
-                  <p className="text-xs text-muted-foreground">vor 15 Minuten • Kauforder ausgeführt</p>
-                </div>
-              </div>
-              
-              <div className="flex items-start space-x-3">
-                <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
-                <div className="flex-1">
-                  <p className="text-sm font-medium">KI-Modell aktualisiert</p>
-                  <p className="text-xs text-muted-foreground">vor 32 Minuten • Neue Gewichtungen aktiv</p>
-                </div>
-              </div>
-              
-              <div className="flex items-start space-x-3">
-                <div className="w-2 h-2 bg-yellow-500 rounded-full mt-2"></div>
-                <div className="flex-1">
-                  <p className="text-sm font-medium">Markt-Anomalie erkannt</p>
-                  <p className="text-xs text-muted-foreground">vor 1 Stunde • Erhöhte Überwachung aktiv</p>
-                </div>
-              </div>
-              
-              <div className="flex items-start space-x-3">
-                <div className="w-2 h-2 bg-red-500 rounded-full mt-2"></div>
-                <div className="flex-1">
-                  <p className="text-sm font-medium">Stop-Loss ausgelöst</p>
-                  <p className="text-xs text-muted-foreground">vor 2 Stunden • META Position geschlossen</p>
+                <div className="space-y-4 pt-4 border-t">
+                  <h4 className="font-medium">Aktivitäts-Feed</h4>
+                  <div className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+                    <div className="flex-1">
+                      <p className="text-sm font-medium">AAPL Position eröffnet</p>
+                      <p className="text-xs text-muted-foreground">vor 15 Minuten • Kauforder ausgeführt</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+                    <div className="flex-1">
+                      <p className="text-sm font-medium">KI-Modell aktualisiert</p>
+                      <p className="text-xs text-muted-foreground">vor 32 Minuten • Neue Gewichtungen aktiv</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-yellow-500 rounded-full mt-2"></div>
+                    <div className="flex-1">
+                      <p className="text-sm font-medium">Markt-Anomalie erkannt</p>
+                      <p className="text-xs text-muted-foreground">vor 1 Stunde • Erhöhte Überwachung aktiv</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-red-500 rounded-full mt-2"></div>
+                    <div className="flex-1">
+                      <p className="text-sm font-medium">Stop-Loss ausgelöst</p>
+                      <p className="text-xs text-muted-foreground">vor 2 Stunden • META Position geschlossen</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </CardContent>
         </Card>
       </div>
-    </>
+    </div>
   );
 }
