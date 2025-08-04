@@ -142,7 +142,7 @@ body {
 
 /* Collapsed sidebar - icon only mode */
 .group\/sidebar-wrapper[data-collapsible="icon"] [data-sidebar="sidebar"] {
-  width: 4rem !important;
+  width: var(--sidebar-width-icon) !important;
 }
 
 /* Main content inset styling */
@@ -165,7 +165,7 @@ main[data-sidebar="inset"] {
 
 /* Content width when sidebar is collapsed */
 .group\/sidebar-wrapper[data-collapsible="icon"] main[data-sidebar="inset"] {
-  width: calc(100vw - 4rem - 0.375rem) !important;
+  width: calc(100vw - var(--sidebar-width-icon) - 0.375rem) !important;
 }
 
 
