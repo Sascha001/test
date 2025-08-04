@@ -221,10 +221,10 @@ const Sidebar = React.forwardRef<
             side === "left"
               ? "left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]"
               : "right-0 group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)]",
-            "group-data-[collapsible=icon]:w-[--sidebar-width-icon] group-data-[side=left]:border-r group-data-[side=right]:border-l",
+            "group-data-[state=collapsed]:w-[--sidebar-width-icon] group-data-[side=left]:border-r group-data-[side=right]:border-l",
             variant === "floating"
               ? "p-2 group-data-[side=left]:border-r-0 group-data-[side=right]:border-l-0"
-              : "group-data-[collapsible=icon]:p-2",
+              : "group-data-[state=collapsed]:p-2",
             variant === "inset" && "bg-sidebar"
           )}
         >
