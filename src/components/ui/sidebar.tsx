@@ -11,9 +11,9 @@ import { Button } from "@/components/ui/button"
 
 export const SIDEBAR_COOKIE_NAME = "sidebar:state"
 export const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
-export const SIDEBAR_WIDTH = "180px"
+export const SIDEBAR_WIDTH = "11.25rem"
 export const SIDEBAR_WIDTH_MOBILE = "18rem"
-export const SIDEBAR_WIDTH_ICON = "48px"
+export const SIDEBAR_WIDTH_ICON = "3rem"
 export const SIDEBAR_KEYBOARD_SHORTCUT = "b"
 
 type SidebarContext = {
@@ -201,7 +201,7 @@ const Sidebar = React.forwardRef<
         ref={ref}
         className="group peer hidden md:block text-sidebar-foreground"
         data-state={state}
-        data-collapsible={collapsible}
+        data-collapsible={state === "collapsed" ? collapsible : ""}
         data-variant={variant}
         data-side={side}
       >
@@ -221,10 +221,10 @@ const Sidebar = React.forwardRef<
             side === "left"
               ? "left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]"
               : "right-0 group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)]",
-            "group-data-[collapsible=icon]:w-[--sidebar-width-icon] group-data-[side=left]:border-r group-data-[side=right]:border-l",
+            "group-data-[state=collapsed]:w-[--sidebar-width-icon] group-data-[side=left]:border-r group-data-[side=right]:border-l",
             variant === "floating"
               ? "p-2 group-data-[side=left]:border-r-0 group-data-[side=right]:border-l-0"
-              : "group-data-[collapsible=icon]:p-2",
+              : "group-data-[state=collapsed]:p-2",
             variant === "inset" && "bg-sidebar"
           )}
         >
