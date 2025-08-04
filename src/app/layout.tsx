@@ -45,9 +45,11 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <SidebarProvider
+          defaultOpen={true}
           style={
             {
               "--sidebar-width": "180px",
+              "--sidebar-width-icon": "48px",
               "--header-height": "3rem",
             } as React.CSSProperties
           }
