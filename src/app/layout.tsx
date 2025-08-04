@@ -47,7 +47,7 @@ export default function RootLayout({
         <SidebarProvider
           style={
             {
-              "--sidebar-width": "280px",
+              "--sidebar-width": "180px",
               "--header-height": "3rem",
             } as React.CSSProperties
           }
