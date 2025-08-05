@@ -147,7 +147,7 @@ body {
 /* Bereinigt - entferne interferierende Debug-Styles */
 
 /* DEBUG CSS CLASSES - NUR VISUELLE FARBEN */
-/* DEBUG FARBEN - VISUELLE ANALYSE */
+/* DEBUG FARBEN - VISUELLE ANALYSE AKTIVIERT */
 .DEBUG-SIDEBAR-FIXED {
   border: 3px solid orange !important;
   cursor: pointer !important;
