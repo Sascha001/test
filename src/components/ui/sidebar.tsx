@@ -152,7 +152,7 @@ const Sidebar = React.forwardRef<
     },
     ref
   ) => {
-    const { isMobile, state, openMobile, setOpenMobile } = useSidebar()
+    const { isMobile, state, openMobile, setOpenMobile, toggleSidebar } = useSidebar()
 
     if (collapsible === "none") {
       return (
@@ -228,13 +228,7 @@ const Sidebar = React.forwardRef<
               : "group-data-[state=collapsed]:p-2",
             variant === "inset" && "bg-sidebar"
           )}
-          onClick={() => {
-            const sidebar = document.querySelector('[data-sidebar="sidebar"]')?.closest('[data-state]') as any;
-            const trigger = document.querySelector('[data-sidebar="trigger"]') as HTMLButtonElement;
-            if (trigger) {
-              trigger.click();
-            }
-          }}
+          onClick={toggleSidebar}
         >
           <div
             data-sidebar="sidebar"
