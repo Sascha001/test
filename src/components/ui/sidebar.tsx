@@ -207,7 +207,7 @@ const Sidebar = React.forwardRef<
       >
         <div
           className={cn(
-            "duration-200 relative h-svh w-[--sidebar-width] bg-transparent transition-[width] ease-linear",
+            "duration-200 relative h-0 w-[--sidebar-width] bg-transparent transition-[width] ease-linear flex-shrink-0",
             "group-data-[collapsible=offcanvas]:w-0",
             "group-data-[side=right]:rotate-180",
             variant === "floating" || variant === "inset"
@@ -218,7 +218,6 @@ const Sidebar = React.forwardRef<
         <div
           className={cn(
             "duration-200 fixed inset-y-0 z-10 hidden h-svh w-[--sidebar-width] transition-[left,right,width] ease-linear md:flex",
-            "DEBUG-SIDEBAR-FIXED",
             side === "left"
               ? "left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]"
               : "right-0 group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)]",
@@ -228,7 +227,6 @@ const Sidebar = React.forwardRef<
               : "group-data-[state=collapsed]:p-2",
             variant === "inset" && "bg-sidebar"
           )}
-          onClick={toggleSidebar}
         >
           <div
             data-sidebar="sidebar"
@@ -307,11 +305,8 @@ const SidebarInset = React.forwardRef<
       ref={ref}
       className={cn(
         "relative flex min-h-svh flex-1 flex-col bg-background transition-all duration-200 ease-linear",
-        "DEBUG-MAIN-CONTENT",
         "peer-data-[variant=inset]:min-h-[calc(100svh-theme(spacing.4))] peer-data-[variant=inset]:rounded-xl peer-data-[variant=inset]:shadow",
-        "md:peer-data-[variant=inset]:m-2",
-        "md:peer-data-[state=collapsed]:peer-data-[variant=inset]:ml-0",
-        "md:peer-data-[state=expanded]:peer-data-[variant=inset]:ml-[calc(var(--sidebar-width)_+_0.5rem)]",
+        "md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-2",
         className
       )}
       {...props}
