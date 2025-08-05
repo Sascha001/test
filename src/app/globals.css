@@ -177,6 +177,12 @@ body {
   padding-left: 0 !important;
 }
 
+/* EINFACHE LÖSUNG: Sidebar Breite direkt steuern */
+.peer[data-state="collapsed"] ~ * .DEBUG-SIDEBAR-FIXED,
+[data-state="collapsed"] .DEBUG-SIDEBAR-FIXED {
+  width: 48px !important;
+}
+
 /* Debug-CSS bereinigt - keine width overrides mehr */
 
 /* Dashboard dynamische Styles - EINHEITLICH mit korrekten CSS-Variablen */
