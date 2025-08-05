@@ -177,10 +177,14 @@ body {
   padding-left: 0 !important;
 }
 
-/* EINFACHE LÖSUNG: Sidebar Breite direkt steuern */
-.peer[data-state="collapsed"] ~ * .DEBUG-SIDEBAR-FIXED,
+/* KORREKTE LÖSUNG: Sidebar Breite nur im kollabierten Zustand steuern */
 [data-state="collapsed"] .DEBUG-SIDEBAR-FIXED {
   width: 48px !important;
+}
+
+/* EXPANDIERTE Sidebar: Normale Breite wiederherstellen */
+[data-state="expanded"] .DEBUG-SIDEBAR-FIXED {
+  width: 180px !important;
 }
 
 /* Debug-CSS bereinigt - keine width overrides mehr */
