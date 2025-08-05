@@ -168,10 +168,27 @@ body {
 /* DEBUG CSS CLASSES */
 .DEBUG-SIDEBAR-FIXED {
   border: 3px solid orange !important;
+  cursor: pointer !important;
+  position: relative !important;
+}
+
+/* Orange border clickable area */
+.DEBUG-SIDEBAR-FIXED::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -3px;
+  width: 6px;
+  height: 100%;
+  background: transparent;
+  cursor: pointer;
+  z-index: 1000;
 }
 
 .DEBUG-MAIN-CONTENT {
   border: 3px solid pink !important;
+  margin-left: 0 !important;
+  padding-left: 0 !important;
 }
 
 /* Target the actual fixed div that controls width */
