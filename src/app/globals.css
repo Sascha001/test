@@ -147,6 +147,7 @@ body {
 /* Bereinigt - entferne interferierende Debug-Styles */
 
 /* DEBUG CSS CLASSES - NUR VISUELLE FARBEN */
+/* DEBUG FARBEN - VISUELLE ANALYSE */
 .DEBUG-SIDEBAR-FIXED {
   border: 3px solid orange !important;
   cursor: pointer !important;
@@ -172,9 +173,17 @@ body {
 }
 
 .DEBUG-MAIN-CONTENT {
-  border: 3px solid pink !important;
+  border: 3px solid hotpink !important;
+  box-shadow: 0 0 10px rgba(255, 105, 180, 0.5) !important;
   margin-left: 0 !important;
   padding-left: 0 !important;
+}
+
+/* SPACER DIV Debug - grüner Rahmen */
+.group.peer > div:first-child {
+  border: 2px solid lime !important;
+  background-color: rgba(0, 255, 0, 0.1) !important;
+  box-shadow: 0 0 5px rgba(0, 255, 0, 0.3) !important;
 }
 
 /* KORREKTE LÖSUNG: Sidebar Breite nur im kollabierten Zustand steuern */
