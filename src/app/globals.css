@@ -177,26 +177,6 @@ body {
   padding-left: 0 !important;
 }
 
-/* Sidebar physische Breite - KORREKTE CSS-Regel */
-.DEBUG-SIDEBAR-FIXED[data-state="collapsed"] {
-  width: var(--sidebar-width-icon) !important;
-}
-
-[data-state="collapsed"] .DEBUG-SIDEBAR-FIXED {
-  width: var(--sidebar-width-icon) !important;
-}
-
-/* Backup: Fixed Sidebar Container direkter Zugriff */
-.fixed.DEBUG-SIDEBAR-FIXED {
-  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-}
-
-/* Zusätzliche Sicherheit: Peer-basierter Selektor */
-.peer[data-state="collapsed"] + main,
-.peer[data-state="collapsed"] ~ * {
-  /* Stelle sicher dass nachfolgende Elemente korrekt positioniert sind */
-}
-
 /* Debug-CSS bereinigt - keine width overrides mehr */
 
 /* Dashboard dynamische Styles - EINHEITLICH mit korrekten CSS-Variablen */
