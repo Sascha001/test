@@ -207,12 +207,11 @@ const Sidebar = React.forwardRef<
       >
         <div
           className={cn(
-            "duration-200 relative h-0 w-[--sidebar-width] bg-transparent transition-[width] ease-linear flex-shrink-0",
+            "duration-200 relative h-0 bg-transparent transition-[width] ease-linear flex-shrink-0",
+            // Spacer auf 0 Breite für fixed variants setzen
+            "w-0",
             "group-data-[collapsible=offcanvas]:w-0",
-            "group-data-[side=right]:rotate-180",
-            variant === "floating" || variant === "inset"
-              ? "group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)_+_theme(spacing.4))]"
-              : "group-data-[collapsible=icon]:w-[--sidebar-width-icon]"
+            "group-data-[side=right]:rotate-180"
           )}
         />
         <div
@@ -309,10 +308,10 @@ const SidebarInset = React.forwardRef<
         "DEBUG-MAIN-CONTENT",
         "peer-data-[variant=inset]:min-h-[calc(100svh-theme(spacing.4))] peer-data-[variant=inset]:rounded-xl peer-data-[variant=inset]:shadow",
         "md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:mr-2",
-        // Kollabiert: kleiner margin-left
-        "md:peer-data-[state=collapsed]:peer-data-[variant=inset]:ml-[calc(var(--sidebar-width-icon)_+_0.5rem)]",
-        // Expandiert: größerer margin-left
-        "md:peer-data-[state=expanded]:peer-data-[variant=inset]:ml-[calc(var(--sidebar-width)_+_0.5rem)]",
+        // Kollabiert: margin-left = nur Sidebar-Icon-Breite (ohne extra 0.5rem)
+        "md:peer-data-[state=collapsed]:peer-data-[variant=inset]:ml-[var(--sidebar-width-icon)]",
+        // Expandiert: margin-left = nur Sidebar-Breite (ohne extra 0.5rem)  
+        "md:peer-data-[state=expanded]:peer-data-[variant=inset]:ml-[var(--sidebar-width)]",
         className
       )}
       {...props}
