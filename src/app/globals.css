@@ -214,23 +214,9 @@ body {
   background-color: magenta !important;
 }
 
-/* Dashboard dynamische Breite - KORREKTE Selektoren */
+/* Dashboard Basisstyles - NUR Transition, kein Override der Tailwind-Klassen */
 main[data-sidebar="inset"] {
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  flex: 1 !important;
-  min-width: 0 !important;
-}
-
-/* Dashboard Breite wenn Sidebar expandiert ist - über peer selector */
-.peer[data-state="expanded"] ~ main[data-sidebar="inset"] {
-  width: calc(100vw - var(--sidebar-width) - 1rem) !important;
-  margin-left: calc(var(--sidebar-width) + 0.5rem) !important;
-}
-
-/* Dashboard Breite wenn Sidebar kollabiert ist - über peer selector */
-.peer[data-state="collapsed"] ~ main[data-sidebar="inset"] {
-  width: calc(100vw - var(--sidebar-width-icon) - 1rem) !important;
-  margin-left: calc(var(--sidebar-width-icon) + 0.5rem) !important;
 }
 
 /* Sidebar hover effects with contrasting colors */
