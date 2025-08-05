@@ -75,27 +75,8 @@ const SidebarProvider = React.forwardRef<
     )
 
     const toggleSidebar = React.useCallback(() => {
-      const result = isMobile ? setOpenMobile((open) => !open) : setOpen((open) => !open)
-      
-      // Backup: Force CSS classes if selectors fail
-      setTimeout(() => {
-        const mainElement = document.querySelector('main[data-sidebar="inset"]') as HTMLElement
-        if (mainElement) {
-          const newState = isMobile ? !openMobile : !open
-          const isCollapsed = !newState
-          
-          if (isCollapsed) {
-            mainElement.style.marginLeft = 'calc(48px + 0.5rem)'
-            mainElement.style.maxWidth = 'calc(100vw - 48px - 1.5rem)'
-          } else {
-            mainElement.style.marginLeft = 'calc(180px + 0.5rem)'
-            mainElement.style.maxWidth = 'calc(100vw - 180px - 1.5rem)'
-          }
-        }
-      }, 50)
-      
-      return result
-    }, [isMobile, setOpen, setOpenMobile, open, openMobile])
+      return isMobile ? setOpenMobile((open) => !open) : setOpen((open) => !open)
+    }, [isMobile, setOpen, setOpenMobile])
 
     React.useEffect(() => {
       const handleKeyDown = (event: KeyboardEvent) => {
@@ -131,13 +112,7 @@ const SidebarProvider = React.forwardRef<
       <SidebarContext.Provider value={contextValue}>
         <div
           data-state={state}
-          style={
-            {
-              "--sidebar-width": SIDEBAR_WIDTH,
-              "--sidebar-width-icon": SIDEBAR_WIDTH_ICON,
-              ...style,
-            } as React.CSSProperties
-          }
+          style={style}
           className={cn(
             "group/sidebar-wrapper flex min-h-svh w-full has-[[data-variant=inset]]:bg-sidebar",
             className
@@ -221,7 +196,7 @@ const Sidebar = React.forwardRef<
         ref={ref}
         className="group peer hidden md:block text-sidebar-foreground"
         data-state={state}
-        data-collapsible={state === "collapsed" ? collapsible : ""}
+        data-collapsible={collapsible}
         data-variant={variant}
         data-side={side}
       >
@@ -230,9 +205,8 @@ const Sidebar = React.forwardRef<
             "duration-200 relative h-0 w-[--sidebar-width] bg-transparent transition-[width] ease-linear flex-shrink-0",
             "group-data-[collapsible=offcanvas]:w-0",
             "group-data-[side=right]:rotate-180",
-            variant === "floating" || variant === "inset"
-              ? "group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)_+_theme(spacing.4))]"
-              : "group-data-[collapsible=icon]:w-[--sidebar-width-icon]"
+            // EINHEITLICH: Alle Varianten verwenden dieselbe collapsed width
+            "group-data-[collapsible=icon]:w-[--sidebar-width-icon]"
           )}
         />
         <div

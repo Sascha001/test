@@ -177,53 +177,25 @@ body {
   padding-left: 0 !important;
 }
 
-/* Target the actual fixed div that controls width */
-.peer[data-state="collapsed"].DEBUG-SIDEBAR-FIXED {
-  width: 60px !important;
-  background-color: cyan !important;
-}
+/* Debug-CSS bereinigt - keine width overrides mehr */
 
-/* Direct element selector */
-.DEBUG-SIDEBAR-FIXED[data-state="collapsed"] {
-  width: 70px !important;
-  background-color: lime !important;
-}
-
-/* Group targeting */
-.group[data-state="collapsed"] .DEBUG-SIDEBAR-FIXED {
-  width: 80px !important;
-  background-color: magenta !important;
-}
-
-/* Dashboard dynamische Styles - VEREINFACHTE und ROBUSTE Selektoren */
+/* Dashboard dynamische Styles - EINHEITLICH mit korrekten CSS-Variablen */
 main[data-sidebar="inset"] {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
   position: relative !important;
   z-index: 1 !important;
 }
 
-/* Dashboard wenn Sidebar EXPANDIERT ist - mehrfache Selektoren für Robustheit */
-[data-state="expanded"] main[data-sidebar="inset"],
-.group\/sidebar-wrapper[data-state="expanded"] main[data-sidebar="inset"],
-div[data-state="expanded"] main[data-sidebar="inset"] {
+/* Dashboard EXPANDIERT - verwendet :root CSS-Variablen */
+[data-state="expanded"] main[data-sidebar="inset"] {
   margin-left: calc(var(--sidebar-width) + 0.5rem) !important;
   max-width: calc(100vw - var(--sidebar-width) - 1.5rem) !important;
-  width: auto !important;
 }
 
-/* Dashboard wenn Sidebar KOLLABIERT ist - mehrfache Selektoren für Robustheit */
-[data-state="collapsed"] main[data-sidebar="inset"],
-.group\/sidebar-wrapper[data-state="collapsed"] main[data-sidebar="inset"],
-div[data-state="collapsed"] main[data-sidebar="inset"] {
+/* Dashboard KOLLABIERT - verwendet :root CSS-Variablen */
+[data-state="collapsed"] main[data-sidebar="inset"] {
   margin-left: calc(var(--sidebar-width-icon) + 0.5rem) !important;
   max-width: calc(100vw - var(--sidebar-width-icon) - 1.5rem) !important;
-  width: auto !important;
-}
-
-/* Fallback für Standard-Zustand (expandiert) */
-main[data-sidebar="inset"]:not(.sidebar-collapsed-applied) {
-  margin-left: calc(var(--sidebar-width) + 0.5rem) !important;
-  max-width: calc(100vw - var(--sidebar-width) - 1.5rem) !important;
 }
 
 /* Sidebar hover effects with contrasting colors */
