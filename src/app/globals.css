@@ -165,10 +165,16 @@ body {
   background-color: purple !important;
 }
 
-/* DEBUG CSS CLASSES */
+/* DEBUG CSS CLASSES - NUR VISUELLE FARBEN */
 .DEBUG-SIDEBAR-FIXED {
   border: 3px solid orange !important;
   cursor: pointer !important;
+  box-shadow: 0 0 10px rgba(255, 165, 0, 0.5) !important;
+}
+
+.DEBUG-MAIN-CONTENT {
+  border: 3px solid hotpink !important;
+  box-shadow: 0 0 10px rgba(255, 105, 180, 0.5) !important;
 }
 
 /* Orange border clickable area */
