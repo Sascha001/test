@@ -177,37 +177,10 @@ body {
   padding-left: 0 !important;
 }
 
-/* KOMPLETTE LÖSUNG: Sowohl Fixed Sidebar als auch Spacer Div */
+/* EINFACHE LÖSUNG: Sidebar Breite direkt steuern */
 .peer[data-state="collapsed"] ~ * .DEBUG-SIDEBAR-FIXED,
 [data-state="collapsed"] .DEBUG-SIDEBAR-FIXED {
   width: 48px !important;
-}
-
-/* SPACER DIV: Kollabiert auch auf 48px */
-[data-state="collapsed"] .group.peer > div:first-child,
-.peer[data-state="collapsed"] > div:first-child {
-  width: 48px !important;
-}
-
-/* TEXT SICHTBARKEIT: Stelle sicher dass Text in kollabierter Sidebar sichtbar bleibt */
-[data-state="collapsed"] .DEBUG-SIDEBAR-FIXED {
-  overflow: visible !important;
-}
-
-/* Sidebar Content in kollabiertem Zustand */
-[data-state="collapsed"] [data-sidebar="sidebar"] {
-  overflow: visible !important;
-}
-
-/* SidebarMenuButton Text in kollabiertem Zustand - nur Icons anzeigen */
-[data-state="collapsed"] [data-sidebar="menu-button"] span:not(.sr-only) {
-  display: none !important;
-}
-
-/* Tooltips für kollabierte Sidebar aktivieren */
-[data-state="collapsed"] [data-sidebar="menu-button"] {
-  justify-content: center !important;
-  padding: 0.5rem !important;
 }
 
 /* Debug-CSS bereinigt - keine width overrides mehr */
