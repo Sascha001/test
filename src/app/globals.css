@@ -208,7 +208,20 @@ body {
   background-color: magenta !important;
 }
 
+/* Dashboard dynamische Breite - korrigierte Implementierung */
+main[data-sidebar="inset"] {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
 
+/* Dashboard Breite wenn Sidebar expandiert ist */
+.group\/sidebar-wrapper:not([data-state="collapsed"]) main[data-sidebar="inset"] {
+  width: calc(100vw - var(--sidebar-width) - 1rem) !important;
+}
+
+/* Dashboard Breite wenn Sidebar kollabiert ist */
+.group\/sidebar-wrapper[data-state="collapsed"] main[data-sidebar="inset"] {
+  width: calc(100vw - var(--sidebar-width-icon) - 1rem) !important;
+}
 
 /* Sidebar hover effects with contrasting colors */
 [data-sidebar="menu-button"]:hover {
