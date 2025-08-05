@@ -186,6 +186,59 @@ body {
   box-shadow: 0 0 5px rgba(0, 255, 0, 0.3) !important;
 }
 
+/* ALLE SIDEBAR-KOMPONENTEN FARBLICH MARKIEREN */
+
+/* 🔵 BLAU: SidebarProvider (group/sidebar-wrapper) */
+.group\/sidebar-wrapper {
+  border: 4px solid blue !important;
+  background-color: rgba(0, 0, 255, 0.05) !important;
+}
+
+/* 🟣 VIOLETT: AppSidebar Container */
+[data-sidebar="sidebar"] {
+  border: 3px solid purple !important;
+  background-color: rgba(128, 0, 128, 0.1) !important;
+}
+
+/* 🟡 GELB: SidebarContent */
+.sidebar-content,
+[data-sidebar="content"] {
+  border: 2px solid yellow !important;
+  background-color: rgba(255, 255, 0, 0.05) !important;
+}
+
+/* 🔴 ROT: SidebarHeader */
+.sidebar-header,
+[data-sidebar="header"] {
+  border: 2px solid red !important;
+  background-color: rgba(255, 0, 0, 0.05) !important;
+}
+
+/* 🔵 CYAN: SidebarContent Middle */
+.sidebar-content-main {
+  border: 2px solid cyan !important;
+  background-color: rgba(0, 255, 255, 0.05) !important;
+}
+
+/* 🟣 MAGENTA: SidebarFooter */
+.sidebar-footer,
+[data-sidebar="footer"] {
+  border: 2px solid magenta !important;
+  background-color: rgba(255, 0, 255, 0.05) !important;
+}
+
+/* 💛 GOLD: SidebarMenuButton */
+[data-sidebar="menu-button"] {
+  border: 1px solid gold !important;
+  background-color: rgba(255, 215, 0, 0.1) !important;
+}
+
+/* 🟢 TÜRKIS: SidebarMenu */
+[data-sidebar="menu"] {
+  border: 1px solid teal !important;
+  background-color: rgba(0, 128, 128, 0.05) !important;
+}
+
 /* KORREKTE LÖSUNG: Sidebar Breite nur im kollabierten Zustand steuern */
 [data-state="collapsed"] .DEBUG-SIDEBAR-FIXED {
   width: 48px !important;
