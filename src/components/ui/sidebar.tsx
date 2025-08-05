@@ -308,13 +308,11 @@ const SidebarInset = React.forwardRef<
         "relative flex min-h-svh flex-1 flex-col bg-background transition-all duration-200 ease-linear",
         "DEBUG-MAIN-CONTENT",
         "peer-data-[variant=inset]:min-h-[calc(100svh-theme(spacing.4))] peer-data-[variant=inset]:rounded-xl peer-data-[variant=inset]:shadow",
-        "md:peer-data-[variant=inset]:m-2",
-        // Kollabiert: schmaler margin, breiteres Dashboard
+        "md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:mr-2",
+        // Kollabiert: kleiner margin-left
         "md:peer-data-[state=collapsed]:peer-data-[variant=inset]:ml-[calc(var(--sidebar-width-icon)_+_0.5rem)]",
-        "md:peer-data-[state=collapsed]:peer-data-[variant=inset]:w-[calc(100vw-var(--sidebar-width-icon)-1rem)]",
-        // Expandiert: breiterer margin, schmaleres Dashboard  
+        // Expandiert: größerer margin-left
         "md:peer-data-[state=expanded]:peer-data-[variant=inset]:ml-[calc(var(--sidebar-width)_+_0.5rem)]",
-        "md:peer-data-[state=expanded]:peer-data-[variant=inset]:w-[calc(100vw-var(--sidebar-width)-1rem)]",
         className
       )}
       {...props}
