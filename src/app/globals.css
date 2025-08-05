@@ -28,6 +28,10 @@
   --radius: 0.5rem;
   --spacing: 0.25rem;
   
+  /* Sidebar CSS-Variablen global definieren */
+  --sidebar-width: 180px;
+  --sidebar-width-icon: 48px;
+  
   /* Sidebar colors */
   --sidebar-background: 0 0% 100%;
   --sidebar-foreground: 240 5.3% 26.1%;
@@ -140,30 +144,7 @@ body {
   position: relative !important;
 }
 
-/* Collapsed sidebar - icon only mode - FORCE TEST */
-.group\/sidebar-wrapper[data-collapsible="icon"] [data-sidebar="sidebar"] {
-  width: 50px !important;
-  background-color: red !important;
-  border: 5px solid yellow !important;
-}
-
-/* Alternative selector test */
-[data-state="collapsed"] [data-sidebar="sidebar"] {
-  width: 50px !important;
-  background-color: blue !important;
-  border: 5px solid green !important;
-}
-
-/* Brute force test - target any sidebar */
-[data-sidebar="sidebar"] {
-  transition: width 0.3s !important;
-}
-
-/* Try targeting the fixed div directly */
-.group .peer .fixed {
-  width: 50px !important;
-  background-color: purple !important;
-}
+/* Bereinigt - entferne interferierende Debug-Styles */
 
 /* DEBUG CSS CLASSES - NUR VISUELLE FARBEN */
 .DEBUG-SIDEBAR-FIXED {
@@ -214,22 +195,35 @@ body {
   background-color: magenta !important;
 }
 
-/* Dashboard dynamische Styles - CSS überschreibt defekte Tailwind-Selektoren */
+/* Dashboard dynamische Styles - VEREINFACHTE und ROBUSTE Selektoren */
 main[data-sidebar="inset"] {
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  position: relative !important;
+  z-index: 1 !important;
 }
 
-/* Dashboard wenn Sidebar EXPANDIERT ist - mehr margin, weniger Breite */
+/* Dashboard wenn Sidebar EXPANDIERT ist - mehrfache Selektoren für Robustheit */
+[data-state="expanded"] main[data-sidebar="inset"],
 .group\/sidebar-wrapper[data-state="expanded"] main[data-sidebar="inset"],
-.group\/sidebar-wrapper:not([data-state="collapsed"]) main[data-sidebar="inset"] {
+div[data-state="expanded"] main[data-sidebar="inset"] {
   margin-left: calc(var(--sidebar-width) + 0.5rem) !important;
   max-width: calc(100vw - var(--sidebar-width) - 1.5rem) !important;
+  width: auto !important;
 }
 
-/* Dashboard wenn Sidebar KOLLABIERT ist - weniger margin, mehr Breite */
-.group\/sidebar-wrapper[data-state="collapsed"] main[data-sidebar="inset"] {
+/* Dashboard wenn Sidebar KOLLABIERT ist - mehrfache Selektoren für Robustheit */
+[data-state="collapsed"] main[data-sidebar="inset"],
+.group\/sidebar-wrapper[data-state="collapsed"] main[data-sidebar="inset"],
+div[data-state="collapsed"] main[data-sidebar="inset"] {
   margin-left: calc(var(--sidebar-width-icon) + 0.5rem) !important;
   max-width: calc(100vw - var(--sidebar-width-icon) - 1.5rem) !important;
+  width: auto !important;
+}
+
+/* Fallback für Standard-Zustand (expandiert) */
+main[data-sidebar="inset"]:not(.sidebar-collapsed-applied) {
+  margin-left: calc(var(--sidebar-width) + 0.5rem) !important;
+  max-width: calc(100vw - var(--sidebar-width) - 1.5rem) !important;
 }
 
 /* Sidebar hover effects with contrasting colors */

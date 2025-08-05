@@ -75,8 +75,27 @@ const SidebarProvider = React.forwardRef<
     )
 
     const toggleSidebar = React.useCallback(() => {
-      return isMobile ? setOpenMobile((open) => !open) : setOpen((open) => !open)
-    }, [isMobile, setOpen, setOpenMobile])
+      const result = isMobile ? setOpenMobile((open) => !open) : setOpen((open) => !open)
+      
+      // Backup: Force CSS classes if selectors fail
+      setTimeout(() => {
+        const mainElement = document.querySelector('main[data-sidebar="inset"]') as HTMLElement
+        if (mainElement) {
+          const newState = isMobile ? !openMobile : !open
+          const isCollapsed = !newState
+          
+          if (isCollapsed) {
+            mainElement.style.marginLeft = 'calc(48px + 0.5rem)'
+            mainElement.style.maxWidth = 'calc(100vw - 48px - 1.5rem)'
+          } else {
+            mainElement.style.marginLeft = 'calc(180px + 0.5rem)'
+            mainElement.style.maxWidth = 'calc(100vw - 180px - 1.5rem)'
+          }
+        }
+      }, 50)
+      
+      return result
+    }, [isMobile, setOpen, setOpenMobile, open, openMobile])
 
     React.useEffect(() => {
       const handleKeyDown = (event: KeyboardEvent) => {
@@ -111,6 +130,7 @@ const SidebarProvider = React.forwardRef<
     return (
       <SidebarContext.Provider value={contextValue}>
         <div
+          data-state={state}
           style={
             {
               "--sidebar-width": SIDEBAR_WIDTH,
@@ -304,6 +324,7 @@ const SidebarInset = React.forwardRef<
   return (
     <main
       ref={ref}
+      data-sidebar="inset"
       className={cn(
         "relative flex min-h-svh flex-1 flex-col bg-background transition-all duration-200 ease-linear",
         "DEBUG-MAIN-CONTENT",
