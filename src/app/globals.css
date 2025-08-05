@@ -174,10 +174,22 @@ body {
   border: 3px solid pink !important;
 }
 
-/* Test all possible selectors */
-.peer[data-state="collapsed"] .DEBUG-SIDEBAR-FIXED {
+/* Target the actual fixed div that controls width */
+.peer[data-state="collapsed"].DEBUG-SIDEBAR-FIXED {
   width: 60px !important;
   background-color: cyan !important;
+}
+
+/* Direct element selector */
+.DEBUG-SIDEBAR-FIXED[data-state="collapsed"] {
+  width: 70px !important;
+  background-color: lime !important;
+}
+
+/* Group targeting */
+.group[data-state="collapsed"] .DEBUG-SIDEBAR-FIXED {
+  width: 80px !important;
+  background-color: magenta !important;
 }
 
 /* Main content inset styling */
