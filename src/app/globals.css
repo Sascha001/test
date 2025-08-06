@@ -260,6 +260,13 @@ body {
   overflow: visible !important;
 }
 
+/* PROBLEM 2: CSS Conflict Resolution - Clean up conflicts */
+[data-state="expanded"] [data-sidebar="sidebar"] span,
+[data-state="expanded"] [data-sidebar="sidebar"] div {
+  display: block !important;
+  visibility: visible !important;
+}
+
 /* Debug-CSS bereinigt - keine width overrides mehr */
 
 /* Dashboard dynamische Styles - EINHEITLICH mit korrekten CSS-Variablen */
@@ -384,4 +391,74 @@ main[data-sidebar="inset"] {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
   max-width: 200px !important;
   word-wrap: break-word !important;
+}
+
+/* PROBLEM 1: State Problem - Force text visibility in expanded state */
+[data-state="expanded"] span,
+[data-state="expanded"] div {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* PROBLEM 6: Z-Index Issues - Ensure proper layering */
+[data-sidebar="sidebar"] {
+  z-index: 20 !important;
+}
+
+[data-sidebar="menu-button"] {
+  z-index: 21 !important;
+}
+
+/* PROBLEM 9: Overflow/Clipping - Prevent text clipping */
+[data-sidebar="sidebar"] span,
+[data-sidebar="sidebar"] div {
+  overflow: visible !important;
+  white-space: nowrap !important;
+}
+
+/* PROBLEM 3: Group Data Mismatch - Explicit text visibility */
+.group-data-\[state\=collapsed\]\:hidden {
+  display: block !important;
+}
+
+[data-state="collapsed"] .group-data-\[state\=collapsed\]\:hidden {
+  display: none !important;
+}
+
+/* PROBLEM 8: Button Event Handler - Ensure clickable area */
+[data-sidebar="menu-button"] {
+  pointer-events: all !important;
+  cursor: pointer !important;
+}
+
+/* PROBLEM 4: CSS Custom Properties - Ensure proper variable updates */
+[data-state="expanded"] {
+  --sidebar-width: 180px !important;
+}
+
+[data-state="collapsed"] {
+  --sidebar-width-icon: 48px !important;
+}
+
+/* PROBLEM 5: Dropdown State Conflicts - Specific text class */
+.sidebar-menu-text {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+[data-state="collapsed"] .sidebar-menu-text {
+  display: none !important;
+}
+
+/* PROBLEM 7: Tailwind Group/Peer Selectors - Force correct behavior */
+[data-state="expanded"] .group-data-\[state\=collapsed\]\:hidden {
+  display: block !important;
+}
+
+/* PROBLEM 10: Hydration Mismatch - Consistent state handling */
+.group\\/sidebar-wrapper[data-state="expanded"] .sidebar-menu-text {
+  display: block !important;
+  visibility: visible !important;
 }
