@@ -249,6 +249,17 @@ body {
   width: 180px !important;
 }
 
+/* VIOLETTER CONTAINER: Muss der Orange-Breite folgen */
+[data-state="collapsed"] [data-sidebar="sidebar"] {
+  width: 48px !important;
+  overflow: visible !important;
+}
+
+[data-state="expanded"] [data-sidebar="sidebar"] {
+  width: 180px !important;
+  overflow: visible !important;
+}
+
 /* Debug-CSS bereinigt - keine width overrides mehr */
 
 /* Dashboard dynamische Styles - EINHEITLICH mit korrekten CSS-Variablen */
