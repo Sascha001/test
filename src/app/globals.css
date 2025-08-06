@@ -385,3 +385,18 @@ main[data-sidebar="inset"] {
   max-width: 200px !important;
   word-wrap: break-word !important;
 }
+
+/* DEBUG: Force text visibility in expanded sidebar */
+[data-state="expanded"] .group-data-[state=collapsed]:hidden {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* DEBUG: Ensure text is visible in purple box */
+[data-sidebar="sidebar"] span,
+[data-sidebar="sidebar"] div {
+  color: hsl(var(--sidebar-foreground)) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
