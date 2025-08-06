@@ -260,19 +260,6 @@ body {
   overflow: visible !important;
 }
 
-/* TEXT-DEBUGGING: Stelle sicher dass Text sichtbar ist */
-[data-state="expanded"] [data-sidebar="sidebar"] span {
-  display: block !important;
-  visibility: visible !important;
-  color: white !important;
-}
-
-/* BUTTON-DEBUGGING: Stelle sicher dass Buttons klickbar sind */
-[data-state="expanded"] [data-sidebar="menu-button"] {
-  pointer-events: auto !important;
-  cursor: pointer !important;
-}
-
 /* Debug-CSS bereinigt - keine width overrides mehr */
 
 /* Dashboard dynamische Styles - EINHEITLICH mit korrekten CSS-Variablen */
